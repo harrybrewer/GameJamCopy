@@ -37,9 +37,6 @@ public class BrotherRoom extends Room {
             }
         }
         else if(command[0].equals("use")){
-            if (command[1].toLowerCase().equals("computer")){
-                useComputer();
-            }
         }
         else if(command[0].equals("search")){
             output.setText(displaySearch());
@@ -56,12 +53,6 @@ public class BrotherRoom extends Room {
                 "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself. You open the file explorer" +
                 "abd the following folders appear:");
         Gui gui = new Gui();
-        Game game = new Game(gui.output, gui.userInput, gui.response);
-        String input = gui.userInput.getText();
-        String[] parsedInput = CommandParser.parseCommand(input);
-        game.readUserInput(input);
-        if (input.equals("fuck")){
-            response.setText("fuck you");
-        }
+        gui.usingComputer = true;
     }
 }
