@@ -14,23 +14,33 @@ public class Gui extends JFrame {
 
     public JTextArea output;
     public JTextArea userInput;
+    public JTextArea response;
     Game game;
 
     public Gui() {
         JPanel mainDisplay = new JPanel();
         JPanel textDisplay = new JPanel();
+        JPanel responseDisplay = new JPanel();
         add(mainDisplay, BorderLayout.NORTH);
+        add(responseDisplay, BorderLayout.CENTER);
         add(textDisplay, BorderLayout.SOUTH);
-        mainDisplay.setLayout(new GridBagLayout());
-        textDisplay.setLayout(new GridBagLayout());
+
+        responseDisplay.add(response = new JTextArea());
+        response.setLineWrap(true);
+        response.setPreferredSize(new Dimension(780, 100));
+        response.setEditable(false);
+        response.setBackground(Color.black);
+        response.setForeground(Color.green);
+        response.setFont(new Font("Arial", Font.PLAIN, 20));
 
         mainDisplay.add(output = new JTextArea());
         output.setLineWrap(true);
-        output.setPreferredSize(new Dimension(780, 460));
+        output.setPreferredSize(new Dimension(780, 360));
         output.setEditable(false);
         output.setBackground(Color.black);
         output.setForeground(Color.green);
         output.setFont(new Font("Arial", Font.PLAIN, 20));
+
 
         userInput = new JTextArea(" ");
         userInput.setLineWrap(true);
@@ -46,7 +56,7 @@ public class Gui extends JFrame {
         textDisplay.add(userInput);
 
         userInput.addKeyListener(new InputListener(this));
-        game = new Game(this.output, this.userInput);
+        game = new Game(this.output, this.userInput, this.response);
     }
 
     public static void main(String[] args) {
@@ -78,7 +88,6 @@ class InputListener implements KeyListener{
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             String command = Gui.userInput.getText();
             Gui.game.readUserInput(command);
-            Gui.userInput.setText("");
         }
     }
 

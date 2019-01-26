@@ -17,7 +17,7 @@ public abstract class Room {
         this.output = output;
     }
 
-    public abstract void run();
+    public abstract void run(String[] command);
     public abstract void display();
 
 }

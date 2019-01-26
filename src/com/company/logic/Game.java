@@ -14,15 +14,15 @@ import java.util.Map;
 public class Game {
     private JTextArea outputRef;
     private JTextArea inputRef;
-    private Hallway hallway;
+    private JTextArea responseRef;
     private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
     private List<item> motherItems = new ArrayList<>(), brotherItem = new ArrayList<>(), fatherItem = new ArrayList<>(), sisterItemm = new ArrayList<>();
 
-
-    public Game(JTextArea outputRef, JTextArea inputRef){
+    public Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
         this.inputRef = inputRef;
+        this.responseRef = responseRef;
         rooms.put("Hallway", new Hallway(outputRef));
         rooms.put("Mother", new MotherRoom(outputRef));
 
@@ -34,69 +34,70 @@ public class Game {
         outputRef.setText("Oooof; Wrong choice, mate.");
     }
 
-    /*
-        Function used to load a new room into the game.
-    */
-    private void loadRoom(String name){
-
-    }
-
     public void readUserInput(String command){
         String[] parsedCommand = CommandParser.parseCommand(command);
         String followUp;
         switch (parsedCommand[0]){
-            case "test":
-                outputRef.setText("This is a test");
-                break;
             case "go":
-                followUp = parsedCommand[1];
-                if(followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")){
-
-                }else if(followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")){
-                    currentRoom = rooms.get("Mother");
-
-
-                }else if(followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")){
-
-
-                }else if(followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")){
-
-                }else{
-                    inputRef.setText("Invalid command");
+                if(parsedCommand.length == 1){
+                    responseRef.setText("No destination set");
+                }else {
+                    followUp = parsedCommand[1];
+                    if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
+                        responseRef.setText("Going to Brothers");
+                    } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
+                        currentRoom = rooms.get("Mother");
+                        sendCommand(currentRoom, parsedCommand);
+                        responseRef.setText("Going to mothers");
+                    } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
+                        responseRef.setText("Going to Fathers");
+                    } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
+                        responseRef.setText("Going to Sisters");
+                    } else {
+                        responseRef.setText("Invalid command");
+                    }
+                    inputRef.setText(" ");
                 }
-
                 break;
             case "take":
-                //Give room to command
-                break;
-            case "use":
-                //give command to room
-                break;
-            case "time":
-                //Check current time
+                sendCommand(currentRoom, parsedCommand);
+                responseRef.setText("Take");
+                inputRef.setText(" ");
                 break;
             case "search":
-                //Things you can interact with in the room
-                //Give command to room
+                sendCommand(currentRoom, parsedCommand);
+                responseRef.setText("Search");
+                inputRef.setText(" ");
+                break;
+            case "use":
+                sendCommand(currentRoom, parsedCommand);
+                responseRef.setText("Use");
+                inputRef.setText(" ");
+                break;
+            case "time":
+                responseRef.setText("Time");
+                inputRef.setText(" ");
+                //Check current time
                 break;
             case "leave":
                 currentRoom = rooms.get("Hallway");
+                responseRef.setText("Leave");
+                inputRef.setText(" ");
+                sendCommand(currentRoom, parsedCommand);
                 break;
             case "help":
-                outputRef.setText("Help page");
-                inputRef.setText("Press enter to continue");
-                break;
-            case "Press":
-                //start room again
+                responseRef.setText("Help page");
+                inputRef.setText("");
                 break;
              default:
                  inputRef.setText("Invalid command");
+                 inputRef.setText(" ");
                  break;
         }
     }
 
-    private void sendCommand(String[] command, Room currentRoom){
-
+    private void sendCommand(Room currentRoom, String[] command){
+        currentRoom.run(command);
     }
 
     private void setUpItems(){
@@ -104,8 +105,6 @@ public class Game {
 
         fatherItem.add(new item("Journal", false, "A old journal, with a bookmark holding a page open"));
         fatherItem.add(new item("Calendar", false, "A calendar open to the month of June"));
-
-
     }
 }
 
@@ -114,7 +113,7 @@ class item {
     private Boolean taken;
     private String description;
 
-     public item(String item, Boolean taken, String description){
+     item(String item, Boolean taken, String description){
          this.item = item;
          this.taken = taken;
          this.description = description;
