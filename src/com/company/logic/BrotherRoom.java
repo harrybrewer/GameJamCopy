@@ -35,6 +35,13 @@ public class BrotherRoom extends Room {
             }
         }
         else if(command[0].equals("use")){
+            boolean hasItem = fetchItemFromInventory(command[1]);
+            if(!hasItem){
+                if (command[1].toLowerCase().equals("computer")) {
+                    useComputer();
+                }else
+                    output.setText("You can't seem to find this item");
+            }
         }
         else if(command[0].equals("search")){
             output.setText(displaySearch());
@@ -46,11 +53,10 @@ public class BrotherRoom extends Room {
         output.setText(roomName + "\n" + description);
     }
 
-    private void useComputer(String[] command){
+    private void useComputer(){
         output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what " +
-                "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself. You open the file explorer" +
-                "abd the following folders appear:");
-        Gui gui = new Gui();
-        gui.usingComputer = true;
+                "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.\n\n" +
+                "<Press enter to access terminal>");
+        Gui.usingComputer = true;
     }
 }
