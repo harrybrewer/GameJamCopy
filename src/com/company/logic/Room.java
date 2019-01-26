@@ -13,11 +13,16 @@ public abstract class Room {
     protected String description;
     protected String[] command;
     protected JTextArea output;
+    protected JTextArea response;
     protected ArrayList<Item> itemList;
+    protected Player player;
+    protected Boolean takeItem;
 
-    public Room(JTextArea output, ArrayList<Item> itemList) {
+    public Room(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player) {
         this.output = output;
+        this.response = response;
         this.itemList = itemList;
+        this.player = player;
     }
 
     public abstract void run(String[] command);

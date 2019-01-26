@@ -17,18 +17,20 @@ public class Game {
     private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
     private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
+    private Player player;
 
     public Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
         this.inputRef = inputRef;
         this.responseRef = responseRef;
+        this.player = new Player(new ArrayList<>());
 
 
-        rooms.put("Hallway", new Hallway(outputRef, null));
-        rooms.put("Mother", new MotherRoom(outputRef, motherItems));
-        rooms.put("Father", new FatherRoom(outputRef, fatherItems));
-        rooms.put("Brother", new BrotherRoom(outputRef,brotherItems));
-        rooms.put("Sister",  new SisterRoom(outputRef, sisterItems));
+        rooms.put("Hallway", new Hallway(outputRef, responseRef, null, player));
+        rooms.put("Mother", new MotherRoom(outputRef, responseRef, motherItems, player));
+        rooms.put("Father", new FatherRoom(outputRef, responseRef, fatherItems, player));
+        rooms.put("Brother", new BrotherRoom(outputRef, responseRef, brotherItems, player));
+        rooms.put("Sister",  new SisterRoom(outputRef, responseRef, sisterItems, player));
         currentRoom = rooms.get("Hallway");
 
         setUpItems();
@@ -71,9 +73,9 @@ public class Game {
                 }
                 break;
             case "take":
-                sendCommand(currentRoom, parsedCommand);
-                responseRef.setText("Take");
                 inputRef.setText(" ");
+                sendCommand(currentRoom, parsedCommand);
+
                 break;
             case "search":
                 sendCommand(currentRoom, parsedCommand);
@@ -100,6 +102,19 @@ public class Game {
                 responseRef.setText("Help page");
                 inputRef.setText("");
                 break;
+            case "inventory":
+                inputRef.setText("");
+                ArrayList<Item> userItems = player.getTakenItems();
+                if(userItems.size() > 0){
+                    String items = "Items: \n";
+                    for(Item item : userItems){
+                        items += item.getItem() + "\n";
+                    }
+                    outputRef.setText(items);
+                }else{
+                    responseRef.setText("You have no items in your inventory");
+                }
+
              default:
                  inputRef.setText("Invalid command");
                  inputRef.setText(" ");
@@ -119,10 +134,10 @@ public class Game {
         fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));
 
         // Brother
-        brotherItems.add(new Item("test", false, "test object"));
+        brotherItems.add(new Item("Test", false, "test object"));
 
         //Sister
-        sisterItems.add(new Item("Sister test", false, "Test object"));
+        sisterItems.add(new Item("Sistertest", false, "Test object"));
     }
 }
 

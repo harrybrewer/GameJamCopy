@@ -3,18 +3,20 @@ package com.company.logic;
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<Item> userItems = new ArrayList<>();
-    private familyPhoto familyPhoto = new familyPhoto(0,0,0,0);
+    private ArrayList<Item> takenItems;
+    //private familyPhoto familyPhoto = new familyPhoto(0,0,0,0);
 
-    public Player(ArrayList<Item> userItems){
-        this.userItems = userItems;
+    public Player(ArrayList<Item> takenItems){
+        this.takenItems = takenItems;
 
     }
 
     public void addItem(Item item){
-        userItems.add(item);
+        takenItems.add(item);
         item.setTaken(true);
     }
+
+    public ArrayList<Item> getTakenItems() { return takenItems; }
 }
 
 class familyPhoto{

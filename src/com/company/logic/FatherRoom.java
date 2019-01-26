@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class FatherRoom extends Room {
 
-    public FatherRoom (JTextArea output, ArrayList<Item> itemList){
-        super(output,itemList);
+    public FatherRoom (JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
+        super(output,response,itemList,player);
         roomName = "Office";
         description = "Walking into the office you appreciate the neatness and order of the room.\n"+
         "A single ray of light exposed from the crack in the blinds hits the desk, almost like a spotlight in a play.\n" +
@@ -14,15 +14,35 @@ public class FatherRoom extends Room {
     }
     @Override
     public void run(String[] command) {
-        if(command[0].equals("go")){
-            display();
-        }else if(command[0].equals("take")){
+        switch (command[0]) {
+            case "go":
+                display();
+                break;
+            case "take":
+                if(command.length == 1){
+                    response.setText("No item selected to take");
+                }else{
+                    takeItem = false;
+                    System.out.println("Taking");
+                    String followUp = command[1];
+                    for(Item item: itemList){
+                        if(item.getItem().toLowerCase().equals(followUp) && !item.getTaken()){
+                            response.setText("You pick up the " + item.getItem());
+                            player.addItem(item);
+                            takeItem = true;
+                        }
+                    }
+                    if(!takeItem){
+                        response.setText("There is no item of that name");
+                    }
+                }
+                break;
+            case "use":
 
-        }else if(command[0].equals("use")){
-
-        }
-        else if(command[0].equals("search")){
-            output.setText(displaySearch());
+                break;
+            case "search":
+                output.setText(displaySearch());
+                break;
         }
     }
 
