@@ -38,7 +38,7 @@ public class BrotherRoom extends Room {
         }
         else if(command[0].equals("use")){
             if (command[1].toLowerCase().equals("computer")){
-                useComputer(command);
+                useComputer();
             }
         }
         else if(command[0].equals("search")){
