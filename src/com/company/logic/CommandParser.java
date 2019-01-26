@@ -6,7 +6,7 @@ public class CommandParser {
         String tokens[] = plainText.replaceAll("(^\\s+|\\s+$)", "").split("\\s+");
 
         for (String t : tokens) {
-
+            t = t.toLowerCase();
             System.out.println(t);
         }
         return tokens;
