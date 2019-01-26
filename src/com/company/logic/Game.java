@@ -148,4 +148,6 @@ class Item {
     public String getDescription() {
         return description;
     }
+
+    public void setTaken(Boolean taken) { this.taken = taken; }
 }
