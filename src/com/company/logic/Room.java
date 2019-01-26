@@ -11,7 +11,6 @@ import java.util.Map;
 public abstract class Room {
     protected String roomName;
     protected String description;
-    protected String[] command;
     protected JTextArea output;
     protected JTextArea response;
     protected ArrayList<Item> itemList;
@@ -36,4 +35,17 @@ public abstract class Room {
         }
         return itemString;
     }
+
+    protected boolean fetchItemFromInventory(String itemName){
+        ArrayList<Item> temp = player.getTakenItems();
+        for(Item i : temp){
+            if(i.getItem().toLowerCase().equals(itemName)){
+                output.setText(i.getUseDescription());
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
