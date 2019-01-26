@@ -38,7 +38,7 @@ public class BrotherRoom extends Room {
         }
         else if(command[0].equals("use")){
             if (command[1].toLowerCase().equals("computer")){
-                useComputer();
+                useComputer(command);
             }
         }
         else if(command[0].equals("search")){
@@ -51,9 +51,17 @@ public class BrotherRoom extends Room {
         output.setText(roomName + "\n" + description);
     }
 
-    private void useComputer(){
+    private void useComputer(String[] command){
         output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what " +
-                "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.");
-
+                "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself. You open the file explorer" +
+                "abd the following folders appear:");
+        Gui gui = new Gui();
+        Game game = new Game(gui.output, gui.userInput, gui.response);
+        String input = gui.userInput.getText();
+        String[] parsedInput = CommandParser.parseCommand(input);
+        game.readUserInput(input);
+        if (input.equals("fuck")){
+            response.setText("fuck you");
+        }
     }
 }
