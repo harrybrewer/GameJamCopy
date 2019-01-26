@@ -120,7 +120,6 @@ public class Game {
                 }else{
                     responseRef.setText("You have no items in your inventory");
                 }
-
              default:
                  inputRef.setText("Invalid command");
                  inputRef.setText(" ");
@@ -142,7 +141,7 @@ public class Game {
         fatherItems.add(new Item("book", false, "A book all about remembering!", "Examining the front of the book reads - \n" + "\"the KEY to remembering - 23rd edition\""));
 
         // Brother
-        brotherItems.add(new Item("Computer", false, "A retro computer form the 90s", "you use the computer"));
+        brotherItems.add(new Item("Laptop", false, "A retro computer form the 90s", "you use the computer"));
         brotherItems.add(new Item("Football table", false, "A classic football table", "you use the football table"));
 
         //Sister

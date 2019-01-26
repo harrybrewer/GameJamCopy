@@ -1,8 +1,4 @@
-package com.company.ui;
-import com.company.logic.BrotherRoom;
-import com.company.logic.CommandParser;
-import com.company.logic.Game;
-import com.company.logic.computerGame;
+package com.company.logic;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -17,7 +13,7 @@ public class Gui extends JFrame {
     public JTextArea userInput;
     public JTextArea output;
     public JTextArea response;
-    public boolean usingComputer;
+    public static boolean usingComputer;
     Game game;
     computerGame comp;
 
@@ -63,7 +59,7 @@ public class Gui extends JFrame {
 
         userInput.addKeyListener(new InputListener(this));
         game = new Game(output, this.userInput, response);
-        comp = new computerGame();
+        comp = new computerGame(output, response, userInput);
     }
 
     public static void main(String[] args) {
@@ -95,8 +91,8 @@ class InputListener implements KeyListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             String command = Gui.userInput.getText();
-            if(Gui.usingComputer){
-
+            if(com.company.logic.Gui.usingComputer){
+                Gui.comp.readUserInput(command);
             }else {
                 Gui.game.readUserInput(command);
             }

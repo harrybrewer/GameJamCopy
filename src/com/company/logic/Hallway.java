@@ -23,6 +23,7 @@ public class Hallway extends Room {
                 display();
                 break;
             case "use":
+                fetchItemFromInventory(command[1]);
                 break;
             case "search":
                 StringBuilder photoOutput = new StringBuilder("The only thing you see is a family portrait\n" + "You see a younger version of yourself");
