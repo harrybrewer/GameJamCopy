@@ -1,6 +1,8 @@
 package com.company.ui;
-
+import com.company.logic.BrotherRoom;
+import com.company.logic.CommandParser;
 import com.company.logic.Game;
+import com.company.logic.computerGame;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,9 +15,13 @@ public class Gui extends JFrame {
     // variable setup
 
     public JTextArea userInput;
+    public JTextArea output;
+    public JTextArea response;
+    public boolean usingComputer;
     Game game;
+    computerGame comp;
 
-    private Gui() {
+    public Gui() {
         JPanel mainDisplay = new JPanel();
         JPanel textDisplay = new JPanel();
         JPanel responseDisplay = new JPanel();
@@ -23,7 +29,7 @@ public class Gui extends JFrame {
         add(responseDisplay, BorderLayout.CENTER);
         add(textDisplay, BorderLayout.SOUTH);
 
-        JTextArea response;
+
         responseDisplay.add(response = new JTextArea());
         response.setLineWrap(true);
         response.setPreferredSize(new Dimension(780, 100));
@@ -32,7 +38,7 @@ public class Gui extends JFrame {
         response.setForeground(Color.green);
         response.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        JTextArea output;
+
         mainDisplay.add(output = new JTextArea());
         output.setLineWrap(true);
         output.setPreferredSize(new Dimension(780, 360));
@@ -57,6 +63,7 @@ public class Gui extends JFrame {
 
         userInput.addKeyListener(new InputListener(this));
         game = new Game(output, this.userInput, response);
+        comp = new computerGame();
     }
 
     public static void main(String[] args) {
@@ -71,6 +78,7 @@ public class Gui extends JFrame {
 
         // Create the game object and give it the GUI's input/output components
         frame.game.run();
+
     }
 }
 
@@ -87,7 +95,11 @@ class InputListener implements KeyListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             String command = Gui.userInput.getText();
-            Gui.game.readUserInput(command);
+            if(Gui.usingComputer){
+
+            }else {
+                Gui.game.readUserInput(command);
+            }
         }
     }
 
