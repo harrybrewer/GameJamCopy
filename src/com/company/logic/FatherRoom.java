@@ -42,7 +42,7 @@ public class FatherRoom extends Room {
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
                     if(command[1].equals("safe")){
-                        output.setText("The safe seems to be locked using a key code of sorts.");
+                        output.setText("The safe seems to be locked using a key code of sorts.\n Enter a key.");
                         break;
                     }else
                         output.setText("You can't seem to find this item");
