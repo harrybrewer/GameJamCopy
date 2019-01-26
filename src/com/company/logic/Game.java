@@ -119,7 +119,8 @@ public class Game {
         fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));
 
         // Brother
-        brotherItems.add(new Item("test", false, "test object"));
+        brotherItems.add(new Item("Computer", false, "A retro computer form the 90s"));
+        brotherItems.add(new Item("Football table", false, "A classic football table"));
 
         //Sister
         sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
