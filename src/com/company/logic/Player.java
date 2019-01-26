@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Item> takenItems;
-    //private familyPhoto familyPhoto = new familyPhoto(0,0,0,0);
+    public familyPhoto familyPhoto;
 
-    public Player(ArrayList<Item> takenItems){
+    Player(ArrayList<Item> takenItems, familyPhoto familyPhoto){
         this.takenItems = takenItems;
-
+        this.familyPhoto = familyPhoto;
     }
 
     public void addItem(Item item){
@@ -20,7 +20,7 @@ public class Player {
 }
 
 class familyPhoto{
-    private Integer mother = 0, father = 0, sister = 0, brother = 0;
+    private Integer mother, father, sister, brother;
     familyPhoto(Integer mother, Integer father, Integer sister, Integer brother){
         this.brother = brother;
         this.father = father;

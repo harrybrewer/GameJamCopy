@@ -14,35 +14,38 @@ public class BrotherRoom extends Room {
 
     @Override
     public void run(String[] command) {
-        if(command[0].equals("go")){
-            display();
-        }
-        else if(command[0].equals("take")){
-            if(command.length == 1){
-                response.setText("No item selected to take");
-            }else{
-                takeItem = false;
-                System.out.println("Taking");
-                String followUp = command[1];
-                for(Item item: itemList){
-                    if(item.getItem().toLowerCase().equals(followUp) && !item.getTaken()){
-                        response.setText("You pick up the " + item.getItem());
-                        player.addItem(item);
-                        takeItem = true;
+        switch (command[0]) {
+            case "go":
+                display();
+                break;
+            case "take":
+                if (command.length == 1) {
+                    response.setText("No item selected to take");
+                } else {
+                    takeItem = false;
+                    System.out.println("Taking");
+                    String followUp = command[1];
+                    for (Item item : itemList) {
+                        if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {
+                            output.setText("You pick up the " + item.getItem() + "\n" + item.getDescription());
+                            response.setText("");
+                            player.addItem(item);
+                            takeItem = true;
+                        }
+                    }
+                    if (!takeItem) {
+                        response.setText("There is no item of that name");
                     }
                 }
-                if(!takeItem){
-                    response.setText("There is no item of that name");
+                break;
+            case "use":
+                if (command[1].toLowerCase().equals("computer")) {
+                    useComputer();
                 }
-            }
-        }
-        else if(command[0].equals("use")){
-            if (command[1].toLowerCase().equals("computer")){
-                useComputer();
-            }
-        }
-        else if(command[0].equals("search")){
-            output.setText(displaySearch());
+                break;
+            case "search":
+                output.setText(displaySearch());
+                break;
         }
     }
 
