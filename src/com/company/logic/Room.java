@@ -6,7 +6,7 @@ package com.company.logic;
 */
 public class Room {
 
-    public Room(){
+    public Room() {
 
     }
 }
