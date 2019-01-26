@@ -128,19 +128,21 @@ public class Game {
 
     private void setUpItems(){
         // Mother
-        motherItems.add(new Item("Vase", false, "Poop"));
+        motherItems.add(new Item("Vase", false, "Poop", "you use the vase"));
         // Father
-        fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open"));
-        fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));
+        fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from constant use and the title is barely readable. Opening the page saved by the bookmark you read the following" +"\n" +
+                        "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));
+        fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June", "you use the calendar"));
+        fatherItems.add(new Item("book", false, "A book all about remembering!", "Examining the front of the book reads - \n" + "\"the KEY to remembering - 23rd edition\""));
 
         // Brother
-        brotherItems.add(new Item("Computer", false, "A retro computer form the 90s"));
-        brotherItems.add(new Item("Football table", false, "A classic football table"));
+        brotherItems.add(new Item("Computer", false, "A retro computer form the 90s", "you use the computer"));
+        brotherItems.add(new Item("Football table", false, "A classic football table", "you use the football table"));
 
         //Sister
         sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
-                "There is a small but visible gap in the middle of the diary."));
-        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes."));
+                "There is a small but visible gap in the middle of the diary.", "you use the diary"));
+        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "you use the notebook"));
     }
 }
 
@@ -148,11 +150,13 @@ class Item {
     private String item;
     private Boolean taken;
     private String description;
+    private String useDescription;
 
-     Item(String item, Boolean taken, String description){
+     Item(String item, Boolean taken, String description, String useDescription){
          this.item = item;
          this.taken = taken;
          this.description = description;
+         this.useDescription = useDescription;
      }
 
     public String getItem() {
@@ -168,4 +172,8 @@ class Item {
     }
 
     public void setTaken(Boolean taken) { this.taken = taken; }
+
+    public String getUseDescription() {
+        return useDescription;
+    }
 }

@@ -23,7 +23,6 @@ public class FatherRoom extends Room {
                     response.setText("No item selected to take");
                 }else{
                     takeItem = false;
-                    System.out.println("Taking");
                     String followUp = command[1];
                     for(Item item: itemList){
                         if(item.getItem().toLowerCase().equals(followUp) && !item.getTaken()){
@@ -37,9 +36,18 @@ public class FatherRoom extends Room {
                     }
                 }
                 break;
-            case "use":
 
+            case "use":
+                boolean hasItem = fetchItemFromInventory(command[1]);
+                if(!hasItem){
+                    if(command[1].equals("safe")){
+                        output.setText("The safe seems to be locked using a key code of sorts.");
+                        break;
+                    }else
+                        output.setText("You can't seem to find this item");
+                }
                 break;
+
             case "search":
                 output.setText(displaySearch());
                 break;
