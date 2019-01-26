@@ -15,13 +15,13 @@ import java.util.Map;
 */
 public class Game {
     private JTextArea outputRef;
-    private JTextField inputRef;
+    private JTextArea inputRef;
     private Hallway hallway;
 
     private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
 
-    public Game(JTextArea outputRef, JTextField inputRef){
+    public Game(JTextArea outputRef, JTextArea inputRef){
         this.hallway = new Hallway();
         this.outputRef = outputRef;
         this.inputRef = inputRef;
