@@ -1,12 +1,13 @@
 package com.company.logic;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Hallway extends Room {
 
 
-    public Hallway(JTextArea output) {
-        super(output);
+    public Hallway(JTextArea output, ArrayList<Item> itemList) {
+        super(output,itemList);
         roomName = "Hallway";
         description = "You are in the hallway";
     }

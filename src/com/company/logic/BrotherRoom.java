@@ -3,13 +3,13 @@ package com.company.logic;
 import com.company.ui.Gui;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class BrotherRoom extends Room {
-    public BrotherRoom(JTextArea output){
-        super(output);
+    public BrotherRoom(JTextArea output, ArrayList<Item> itemList){
+        super(output, itemList);
         roomName = "Games room";
         description = "This room appears to be a games room. There is an old computer on the desk in the corner.";
-
     }
 
     @Override
@@ -25,6 +25,9 @@ public class BrotherRoom extends Room {
                 useComputer();
             }
         }
+        else if(command[0].equals("search")){
+            output.setText(displaySearch());
+        }
     }
 
     @Override
@@ -33,7 +36,8 @@ public class BrotherRoom extends Room {
     }
 
     private void useComputer(){
-        output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what/" +
+        output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what " +
                 "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.");
+
     }
 }

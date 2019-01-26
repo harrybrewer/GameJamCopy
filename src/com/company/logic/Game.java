@@ -3,7 +3,6 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -17,16 +16,21 @@ public class Game {
     private JTextArea responseRef;
     private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
-    private List<item> motherItems = new ArrayList<>(), brotherItem = new ArrayList<>(), fatherItem = new ArrayList<>(), sisterItemm = new ArrayList<>();
+    private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
 
     public Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
         this.inputRef = inputRef;
         this.responseRef = responseRef;
-        rooms.put("Hallway", new Hallway(outputRef));
-        rooms.put("Mother", new MotherRoom(outputRef));
 
+
+        rooms.put("Hallway", new Hallway(outputRef, null));
+        rooms.put("Mother", new MotherRoom(outputRef, motherItems));
+        rooms.put("Father", new FatherRoom(outputRef, fatherItems));
+        rooms.put("Brother", new BrotherRoom(outputRef,brotherItems));
         currentRoom = rooms.get("Hallway");
+
+        setUpItems();
     }
 
     // Master method to activate the game;
@@ -45,12 +49,16 @@ public class Game {
                     followUp = parsedCommand[1];
                     if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
                         responseRef.setText("Going to Brothers");
+                        currentRoom = rooms.get("Brother");
+                        sendCommand(currentRoom, parsedCommand);
                     } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
                         currentRoom = rooms.get("Mother");
                         sendCommand(currentRoom, parsedCommand);
                         responseRef.setText("Going to mothers");
                     } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
                         responseRef.setText("Going to Fathers");
+                        currentRoom = rooms.get("Father");
+                        sendCommand(currentRoom, parsedCommand);
                     } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
                         responseRef.setText("Going to Sisters");
                     } else {
@@ -101,21 +109,37 @@ public class Game {
     }
 
     private void setUpItems(){
-        motherItems.add(new item("Vase", false, "Poop"));
+        // Mother
+        motherItems.add(new Item("Vase", false, "Poop"));
+        // Father
+        fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open"));
+        fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));
 
-        fatherItem.add(new item("Journal", false, "A old journal, with a bookmark holding a page open"));
-        fatherItem.add(new item("Calendar", false, "A calendar open to the month of June"));
+        // Brother
+        brotherItems.add(new Item("test", false, "test object"));
     }
 }
 
-class item {
+class Item {
     private String item;
     private Boolean taken;
     private String description;
 
-     item(String item, Boolean taken, String description){
+     Item(String item, Boolean taken, String description){
          this.item = item;
          this.taken = taken;
          this.description = description;
      }
+
+    public String getItem() {
+        return item;
+    }
+
+    public Boolean getTaken() {
+        return taken;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

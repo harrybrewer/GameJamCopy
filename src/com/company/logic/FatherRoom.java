@@ -3,35 +3,31 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class MotherRoom extends Room{
+public class FatherRoom extends Room {
 
-    public MotherRoom(JTextArea output, ArrayList<Item> itemList){
+    public FatherRoom (JTextArea output, ArrayList<Item> itemList){
         super(output,itemList);
-        roomName = "Parent's room";
-        description = "This seems to be the master bedroom";
-
+        roomName = "Office";
+        description = "Walking into the office you appreciate the neatness and order of the room.\n"+
+        "The dimly lit room being illuminated by the half opened window ";
     }
-
     @Override
     public void run(String[] command) {
         if(command[0].equals("go")){
-            this.display();
+            System.out.println("we ran?" + command);
+            display();
         }else if(command[0].equals("take")){
 
         }else if(command[0].equals("use")){
 
         }
         else if(command[0].equals("search")){
-
+            output.setText(displaySearch());
         }
     }
 
     @Override
     public void display() {
         output.setText(roomName + "\n" + description);
-    }
-
-    private void puzzleControl(){
-
     }
 }
