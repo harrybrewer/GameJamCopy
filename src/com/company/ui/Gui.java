@@ -12,12 +12,10 @@ import java.awt.event.KeyListener;
 public class Gui extends JFrame {
     // variable setup
 
-    public JTextArea output;
     public JTextArea userInput;
-    public JTextArea response;
     Game game;
 
-    public Gui() {
+    private Gui() {
         JPanel mainDisplay = new JPanel();
         JPanel textDisplay = new JPanel();
         JPanel responseDisplay = new JPanel();
@@ -25,6 +23,7 @@ public class Gui extends JFrame {
         add(responseDisplay, BorderLayout.CENTER);
         add(textDisplay, BorderLayout.SOUTH);
 
+        JTextArea response;
         responseDisplay.add(response = new JTextArea());
         response.setLineWrap(true);
         response.setPreferredSize(new Dimension(780, 100));
@@ -33,6 +32,7 @@ public class Gui extends JFrame {
         response.setForeground(Color.green);
         response.setFont(new Font("Arial", Font.PLAIN, 20));
 
+        JTextArea output;
         mainDisplay.add(output = new JTextArea());
         output.setLineWrap(true);
         output.setPreferredSize(new Dimension(780, 360));
@@ -56,7 +56,7 @@ public class Gui extends JFrame {
         textDisplay.add(userInput);
 
         userInput.addKeyListener(new InputListener(this));
-        game = new Game(this.output, this.userInput, this.response);
+        game = new Game(output, this.userInput, response);
     }
 
     public static void main(String[] args) {

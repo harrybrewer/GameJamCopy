@@ -23,7 +23,7 @@ public class Game {
         this.outputRef = outputRef;
         this.inputRef = inputRef;
         this.responseRef = responseRef;
-        this.player = new Player(new ArrayList<>());
+        this.player = new Player(new ArrayList<>(), new familyPhoto(0,0,0,0));
 
 
         rooms.put("Hallway", new Hallway(outputRef, responseRef, null, player));
@@ -38,7 +38,9 @@ public class Game {
 
     // Master method to activate the game;
     public void run(){
-        outputRef.setText("Oooof; Wrong choice, mate.");
+        currentRoom = rooms.get("Hallway");
+        String[] s = {"leave"};
+        sendCommand(currentRoom, s);
     }
 
     public void readUserInput(String command){
@@ -50,24 +52,28 @@ public class Game {
                     responseRef.setText("No destination set");
                 }else {
                     followUp = parsedCommand[1];
-                    if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
-                        responseRef.setText("Going to Brothers");
-                        currentRoom = rooms.get("Brother");
-                        sendCommand(currentRoom, parsedCommand);
-                    } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
-                        currentRoom = rooms.get("Mother");
-                        sendCommand(currentRoom, parsedCommand);
-                        responseRef.setText("Going to mothers");
-                    } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
-                        responseRef.setText("Going to Fathers");
-                        currentRoom = rooms.get("Father");
-                        sendCommand(currentRoom, parsedCommand);
-                    } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
-                        responseRef.setText("Going to Sisters");
-                        currentRoom = rooms.get("Sister");
-                        sendCommand(currentRoom, parsedCommand);
-                    } else {
-                        responseRef.setText("Invalid command");
+                    if(currentRoom.roomName.equals("Hallway")) {
+                        if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
+                            responseRef.setText("Going to Brothers");
+                            currentRoom = rooms.get("Brother");
+                            sendCommand(currentRoom, parsedCommand);
+                        } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
+                            currentRoom = rooms.get("Mother");
+                            sendCommand(currentRoom, parsedCommand);
+                            responseRef.setText("Going to mothers");
+                        } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
+                            responseRef.setText("Going to Fathers");
+                            currentRoom = rooms.get("Father");
+                            sendCommand(currentRoom, parsedCommand);
+                        } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
+                            responseRef.setText("Going to Sisters");
+                            currentRoom = rooms.get("Sister");
+                            sendCommand(currentRoom, parsedCommand);
+                        } else {
+                            responseRef.setText("Invalid command");
+                        }
+                    }else{
+                        responseRef.setText("You can't go to that room as you aren't in the hallway");
                     }
                     inputRef.setText(" ");
                 }
@@ -106,11 +112,11 @@ public class Game {
                 inputRef.setText("");
                 ArrayList<Item> userItems = player.getTakenItems();
                 if(userItems.size() > 0){
-                    String items = "Items: \n";
+                    StringBuilder items = new StringBuilder("Items: \n");
                     for(Item item : userItems){
-                        items += item.getItem() + "\n";
+                        items.append(item.getItem()).append("\n");
                     }
-                    outputRef.setText(items);
+                    outputRef.setText(items.toString());
                 }else{
                     responseRef.setText("You have no items in your inventory");
                 }
