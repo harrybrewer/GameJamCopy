@@ -1,5 +1,7 @@
 package com.company.logic;
 
+import com.company.Hallway;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,11 +16,13 @@ import java.util.Map;
 public class Game {
     private JTextArea outputRef;
     private JTextField inputRef;
+    private Hallway hallway;
 
     private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
 
     public Game(JTextArea outputRef, JTextField inputRef){
+        this.hallway = new Hallway();
         this.outputRef = outputRef;
         this.inputRef = inputRef;
     }
@@ -26,6 +30,8 @@ public class Game {
     // Master method to activate the game;
     public void run(){
         outputRef.setText("Oooof; Wrong choice, mate.");
+
+
         readUserInput();
     }
 

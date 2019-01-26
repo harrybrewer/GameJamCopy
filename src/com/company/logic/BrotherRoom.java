@@ -10,7 +10,7 @@ public class BrotherRoom {
         gui.output.setText(mainText);
 
         String input = gui.userInput.getText();
-        while(){
+        while(true){
             Command(input);
         }
     }
