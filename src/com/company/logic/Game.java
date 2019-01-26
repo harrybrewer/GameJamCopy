@@ -3,6 +3,8 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
     Game object used to deal with the flow of logic.
@@ -13,7 +15,7 @@ public class Game {
     private JTextArea outputRef;
     private JTextField inputRef;
 
-    private Collection<Room> rooms = new ArrayList<Room>();
+    private Map<String,Room> rooms = new HashMap<>();
     private Room currentRoom;
 
     public Game(JTextArea outputRef, JTextField inputRef){
@@ -24,16 +26,22 @@ public class Game {
     // Master method to activate the game;
     public void run(){
         outputRef.setText("Oooof; Wrong choice, mate.");
+        readUserInput();
     }
 
     /*
         Function used to load a new room into the game.
-        Depending on where the player is at the time
     */
-    private void loadRoom(){}
+    private void loadRoom(String name){
+
+    }
 
     private String readUserInput(){
-        inputRef.getText();
+
+        String command = "enter brother's room";
+        String[] parsedCommand = CommandParser.parseCommand(command);
+        System.out.println();
+
         return null;
     }
 }

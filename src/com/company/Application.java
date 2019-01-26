@@ -21,5 +21,6 @@ public class Application {
         Game game = new Game(frame.output, frame.userInput);
 
         game.run();
+
     }
 }
