@@ -9,7 +9,8 @@ public class FatherRoom extends Room {
         super(output,itemList);
         roomName = "Office";
         description = "Walking into the office you appreciate the neatness and order of the room.\n"+
-        "The dimly lit room being illuminated by the half opened window ";
+        "A single ray of light exposed from the crack in the blinds hits the desk, almost like a spotlight in a play.\n" +
+                "On the opposite wall you notice a safe embedded into the foundations of the house, what ever is in here must be important...";
     }
     @Override
     public void run(String[] command) {
