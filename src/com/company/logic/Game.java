@@ -3,8 +3,6 @@ package com.company.logic;
 import com.company.Hallway;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,9 +28,6 @@ public class Game {
     // Master method to activate the game;
     public void run(){
         outputRef.setText("Oooof; Wrong choice, mate.");
-
-
-        readUserInput();
     }
 
     /*
@@ -42,11 +37,11 @@ public class Game {
 
     }
 
-    private String readUserInput(){
-
-        String command = "enter brother's room";
+    public String readUserInput(String command){
         String[] parsedCommand = CommandParser.parseCommand(command);
-        System.out.println();
+        if(parsedCommand[0].equals("test")){
+            outputRef.setText("This is a test");
+        }
 
         return null;
     }

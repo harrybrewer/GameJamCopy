@@ -1,15 +1,15 @@
 package com.company.logic;
 
-import com.company.ui.gui;
+import com.company.ui.Gui;
 
 public class BrotherRoom {
-    private gui gui = new gui();
+    private Gui Gui = new Gui();
     private void initialise(){
         String mainText = "You have entered a single bedroom that appears to be for a male. The room is neat and clean, the bed has been made./" +
                 "There is an old computer on the desk.";
-        gui.output.setText(mainText);
+        Gui.output.setText(mainText);
 
-        String input = gui.userInput.getText();
+        String input = Gui.userInput.getText();
         while(true){
             Command(input);
         }
