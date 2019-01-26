@@ -137,7 +137,9 @@ public class Game {
         brotherItems.add(new Item("Test", false, "test object"));
 
         //Sister
-        sisterItems.add(new Item("Sistertest", false, "Test object"));
+        sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
+                "There is a small but visible gap in the middle of the diary."));
+        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes."));
     }
 }
 
