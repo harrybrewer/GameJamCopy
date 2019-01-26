@@ -40,11 +40,7 @@ public class SisterRoom extends Room {
             case "use":
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
-                    if(command[1].equals("safe")){
-                        output.setText("The safe seems to be locked using a key code of sorts.");
-                        break;
-                    }else
-                        output.setText("You can't seem to find this item");
+                    // Add potential usable item in room if we want
                 }
                 break;
             case "search":

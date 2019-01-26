@@ -46,6 +46,8 @@ public abstract class Room {
         }
         return false;
     }
+}
 
+class Computer {
 
 }

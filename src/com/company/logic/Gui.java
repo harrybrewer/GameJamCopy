@@ -14,8 +14,10 @@ public class Gui extends JFrame {
     public JTextArea output;
     public JTextArea response;
     public static boolean usingComputer;
+    public static boolean safePuzzle;
     Game game;
     computerGame comp;
+    SafePuzzle safe;
 
     public Gui() {
         JPanel mainDisplay = new JPanel();
@@ -58,8 +60,11 @@ public class Gui extends JFrame {
         textDisplay.add(userInput);
 
         userInput.addKeyListener(new InputListener(this));
+
+        // Puzzle and game init
         game = new Game(output, this.userInput, response);
         comp = new computerGame(output, response, userInput);
+        safe = new SafePuzzle(output,response,userInput);
     }
 
     public static void main(String[] args) {
@@ -93,7 +98,10 @@ class InputListener implements KeyListener{
             String command = Gui.userInput.getText();
             if(com.company.logic.Gui.usingComputer){
                 Gui.comp.readUserInput(command);
-            }else {
+            }else if(com.company.logic.Gui.safePuzzle){
+                Gui.safe.readUserInput(command);
+            }
+            else {
                 Gui.game.readUserInput(command);
             }
         }
