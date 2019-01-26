@@ -115,14 +115,16 @@ public class Game {
         // Mother
         motherItems.add(new Item("Vase", false, "Poop"));
         // Father
-        fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open"));
+        fatherItems.add(new Item("Journal", false, "An old journal, with a bookmark holding a page open"));
         fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));
 
         // Brother
         brotherItems.add(new Item("test", false, "test object"));
 
         //Sister
-        sisterItems.add(new Item("Sister test", false, "Test object"));
+        sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
+                "There is a small but visible gap in the middle of the diary."));
+        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes."));
     }
 }
 
