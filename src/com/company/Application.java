@@ -7,11 +7,13 @@ import com.company.ui.gui;
 import javax.swing.*;
 
 public class Application {
-
+    public static int width = 800;
+    public static int height = 600;
     public static void main(String[] args) {
         // init the GUI class and fields
+
         gui frame = new gui();
-        frame.setSize(700, 500);
+        frame.setSize(width, height);
         frame.setTitle("Draughts");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
