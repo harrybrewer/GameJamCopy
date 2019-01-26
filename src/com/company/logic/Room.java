@@ -24,7 +24,7 @@ public abstract class Room {
     public abstract void display();
 
     protected String displaySearch(){
-        String itemString = "";
+        String itemString = "After a quick look around the room you find the following items -\n";
         for(Item i : itemList){
             if(!i.getTaken())
                 itemString+= i.getItem() + "\n";

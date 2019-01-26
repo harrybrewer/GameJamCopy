@@ -22,7 +22,7 @@ public class MotherRoom extends Room{
 
         }
         else if(command[0].equals("search")){
-
+            output.setText(displaySearch());
         }
     }
 

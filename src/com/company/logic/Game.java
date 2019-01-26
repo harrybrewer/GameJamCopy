@@ -28,6 +28,7 @@ public class Game {
         rooms.put("Mother", new MotherRoom(outputRef, motherItems));
         rooms.put("Father", new FatherRoom(outputRef, fatherItems));
         rooms.put("Brother", new BrotherRoom(outputRef,brotherItems));
+        rooms.put("Sister",  new SisterRoom(outputRef, sisterItems));
         currentRoom = rooms.get("Hallway");
 
         setUpItems();
@@ -61,6 +62,8 @@ public class Game {
                         sendCommand(currentRoom, parsedCommand);
                     } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
                         responseRef.setText("Going to Sisters");
+                        currentRoom = rooms.get("Sister");
+                        sendCommand(currentRoom, parsedCommand);
                     } else {
                         responseRef.setText("Invalid command");
                     }
@@ -117,6 +120,9 @@ public class Game {
 
         // Brother
         brotherItems.add(new Item("test", false, "test object"));
+
+        //Sister
+        sisterItems.add(new Item("Sister test", false, "Test object"));
     }
 }
 

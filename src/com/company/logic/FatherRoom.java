@@ -14,7 +14,6 @@ public class FatherRoom extends Room {
     @Override
     public void run(String[] command) {
         if(command[0].equals("go")){
-            System.out.println("we ran?" + command);
             display();
         }else if(command[0].equals("take")){
 
