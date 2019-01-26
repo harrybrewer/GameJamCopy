@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Hallway extends Room {
 
 
-    public Hallway(JTextArea output, ArrayList<Item> itemList) {
-        super(output,itemList);
+    public Hallway(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player) {
+        super(output, response, itemList, player);
         roomName = "Hallway";
         description = "You are in the hallway";
     }
