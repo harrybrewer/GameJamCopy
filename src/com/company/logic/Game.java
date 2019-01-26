@@ -134,7 +134,7 @@ public class Game {
 
     private void setUpItems(){
         // Mother
-        motherItems.add(new Item("Vase", false, "Poop"));
+        motherItems.add(new Item("Vase", false, "The vase is ornate, with detailed carvings"));
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open"));
         fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June"));

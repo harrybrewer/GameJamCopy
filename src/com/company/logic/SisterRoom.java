@@ -26,7 +26,8 @@ public class SisterRoom extends Room {
                     String followUp = command[1];
                     for (Item item : itemList) {
                         if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {
-                            response.setText("You pick up the " + item.getItem());
+                            output.setText("You pick up the " + item.getItem() + "\n" + item.getDescription());
+                            response.setText("");
                             player.addItem(item);
                             takeItem = true;
                         }
