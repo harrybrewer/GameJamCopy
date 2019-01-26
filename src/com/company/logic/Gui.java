@@ -1,8 +1,4 @@
-package com.company.ui;
-import com.company.logic.BrotherRoom;
-import com.company.logic.CommandParser;
-import com.company.logic.Game;
-import com.company.logic.computerGame;
+package com.company.logic;
 
 import javax.swing.*;
 import javax.swing.border.Border;

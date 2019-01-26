@@ -38,7 +38,10 @@ public class SisterRoom extends Room {
                 }
                 break;
             case "use":
-
+                boolean hasItem = fetchItemFromInventory(command[1]);
+                if(!hasItem){
+                    // Add potential usable item in room if we want
+                }
                 break;
             case "search":
                 output.setText(displaySearch());

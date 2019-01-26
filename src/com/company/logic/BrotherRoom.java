@@ -1,7 +1,5 @@
 package com.company.logic;
 
-import com.company.ui.Gui;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
