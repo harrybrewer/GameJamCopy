@@ -86,12 +86,16 @@ class ComputerGame {
                         virusOut += "Hard Disk # (XXX)";
                         virusOut += "For more information, please visit:\n";
                         output.setText(virusOut);
-                        response.setText("You have stopped using the computer");
+                        response.setText("You shut down the computer and get up from the desk.");
                         Gui.computerBroken = true;
                         Gui.usingComputer = false;
 
-                    } else if (followUp.equals("my")) {
-                        output.setText("As the program runs you get memories of your brother,\nand when he taught you how to program");
+                    } else if (followUp.equals("memories.exe")) {
+                        output.setText(" As the program runs the display changes between pictures and videos of two young \n boys, seemingly brothers, doing various activities:" +
+                                "\n a day out to the city, a picture of the boys on a roller coaster, on a road trip." +
+                                "\n\n As the program moves through the photos and videos, you slowly begin to recognise the two boys:" +
+                                "\n it is you and your older brother, and some of your most cherished memories together.");
+                        response.setText("You shut down the computer and get up from the desk.");
                         Gui.computerCompleted = true;
                         Gui.usingComputer = false;
                     }
@@ -109,7 +113,7 @@ class ComputerGame {
 
     private void initialiseFolders(){
         documentsFolder.add("VIRUS.exe");
-        documentsFolder.add("my first program.exe");
+        documentsFolder.add("memories.exe");
 
         downloadsFolder.add("Single_Russians.html");
         downloadsFolder.add("BanderSnatch.pdf");
