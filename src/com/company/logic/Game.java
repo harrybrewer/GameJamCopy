@@ -18,6 +18,7 @@ class Game {
     private Room currentRoom;
     private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
     private Player player;
+    public boolean intro = true;
 
     Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
