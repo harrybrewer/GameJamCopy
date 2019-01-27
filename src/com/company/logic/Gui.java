@@ -19,7 +19,7 @@ public class Gui extends JFrame {
     static boolean computerBroken;
     static boolean computerCompleted;
     static boolean safeCompleted;
-    static boolean safeBrokem;
+    static boolean safeBroken;
 
     private Gui() {
         JPanel mainDisplay = new JPanel();
