@@ -59,11 +59,23 @@ class Game {
 
         if(player.familyPhoto.getTotal() == 4){
             //good ending
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, in surprise you see you family.\n" +
+                    "");
+            responseRef.setText("You have completed the game");
+            outputRef.setText("");
         }else if((Gui.safeCompleted && Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken) ||
                 (Gui.locketCompleted && Gui.diaryCompleted && Gui.computerCompleted && Gui.safeBroken)){
             //Mild ending
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, you see a woman from the hospital.\n" +
+                    "She says to you that you need to come back to the hospital, she says your family are there to meet you");
+            responseRef.setText("You have completed the game");
+            outputRef.setText("");
         }else if(Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken && Gui.safeBroken){
             //Bad ending
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, its the mail man, he has an eviction notice for you.\n" +
+                    "You sit down by the door confused and alone.");
+            responseRef.setText("You have completed the game");
+            outputRef.setText("");
         }
 
         String[] parsedCommand = CommandParser.parseCommand(command);
