@@ -17,6 +17,7 @@ public class Hallway extends Room {
                 "Master bedroom\n" +
                 "And a games rooms\n\n" +
                 "Where do you wish to go?";
+        response.setText("Click on the panel below to begin typing. Type help to begin.");
     }
 
     @Override
@@ -25,8 +26,12 @@ public class Hallway extends Room {
             intro = false;
         }
         else{
-            description = "You are in the hallway, there are 4 rooms you can enter. \n" +
-                    "There is a master a bedroom, an office, a games room and a small bedroom";
+            description = "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n" +
+                        "An office\n" +
+                        "Small bedroom\n" +
+                        "Master bedroom\n" +
+                        "And a games rooms\n\n" +
+                        "Where do you wish to go?";;
         }
         switch(command[0]){
             case "take":
