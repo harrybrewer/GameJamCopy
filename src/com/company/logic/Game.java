@@ -50,6 +50,12 @@ class Game {
         if(Gui.safeCompleted){
             player.familyPhoto.setFather(1);
         }
+        if(Gui.diaryCompleted){
+            player.familyPhoto.setSister(1);
+        }
+        if(Gui.locketCompleted){
+            player.familyPhoto.setMother(1);
+        }
 
         String[] parsedCommand = CommandParser.parseCommand(command);
         String followUp;
@@ -161,8 +167,7 @@ class Game {
         brotherItems.add(new Item("Football table", false, "A classic football table", "you use the football table"));
 
         //Sister
-        sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
-                "There is a small but visible gap in the middle of the diary.", "The diary seems to be written from the perspective of young woman. It contains "));
+        sisterItems.add(new Item("Book", false, "", "The diary seems to be written from the perspective of young woman. It contains "));
         sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "you use the notebook"));
     }
 }

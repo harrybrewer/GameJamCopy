@@ -11,15 +11,21 @@ public class Gui extends JFrame {
     // variable setup
 
     JTextArea userInput;
-    static boolean usingComputer;
-    static boolean safePuzzle;
+
     Game game;
     computerGame comp;
     SafePuzzle safe;
+    diaryPuzzle diary;
     static boolean computerBroken;
     static boolean computerCompleted;
     static boolean safeCompleted;
     static boolean safeBroken;
+    static boolean usingComputer;
+    static boolean safePuzzle;
+    static boolean diaryPuzzle;
+    static boolean diaryCompleted;
+    static boolean locketPuzzle;
+    static boolean locketCompleted;
 
     private Gui() {
         JPanel mainDisplay = new JPanel();
@@ -69,6 +75,8 @@ public class Gui extends JFrame {
         game = new Game(output, this.userInput, response);
         comp = new computerGame(output, response, userInput);
         safe = new SafePuzzle(output, response);
+        diary = new diaryPuzzle(output, response, userInput);
+
     }
 
     public static void main(String[] args) {
@@ -104,8 +112,11 @@ class InputListener implements KeyListener{
                 Gui.comp.readUserInput(command);
             }else if(com.company.logic.Gui.safePuzzle){
                 Gui.safe.readUserInput(command);
-            }
-            else {
+            }else if(com.company.logic.Gui.diaryPuzzle){
+                Gui.diary.readUserInput(command);
+            }else if(com.company.logic.Gui.locketPuzzle) {
+                Gui.safe.readUserInput(command);
+            }else{
                 Gui.game.readUserInput(command);
             }
         }
