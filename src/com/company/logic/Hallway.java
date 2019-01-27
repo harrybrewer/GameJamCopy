@@ -17,6 +17,7 @@ public class Hallway extends Room {
                 "Master bedroom\n" +
                 "And a games rooms\n\n" +
                 "Where do you wish to go?";
+        response.setText("Click on the panel below to begin typing. Type help to begin.");
     }
 
     @Override
