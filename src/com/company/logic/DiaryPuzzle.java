@@ -13,7 +13,6 @@ class DiaryPuzzle {
 
     void readUserInput(String command) {
         String[] parsedCommand = CommandParser.parseCommand(command);
-        output.setText("");
         userInput.setText("");
         response.setText("Searching for missing piece");
         switch (parsedCommand[0]) {

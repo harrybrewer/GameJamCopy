@@ -10,7 +10,6 @@ public class BrotherRoom extends Room {
         roomName = "Games room";
         description = "The room is cluttered with old broken consoles, computer equipment and various wires. The walls are plastered with video game box art and posters and various post-it notes\n" +
                 "In between the jungle of wires and hardware components you notice an old computer\nthat looks somewhat functional.\n";
-                "In between the jungle of wires and hardware components you notice an old computer\nthat looks some what functional.\n";
         hint = "<use computer> to start the puzzle";
     }
 
