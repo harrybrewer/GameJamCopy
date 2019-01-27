@@ -23,6 +23,7 @@ public class SisterRoom extends Room {
                     response.setText("No item selected to take");
                 } else {
                     takeItem = false;
+                    System.out.println("Taking");
                     String followUp = command[1];
                     for (Item item : itemList) {
                         if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {
@@ -41,9 +42,12 @@ public class SisterRoom extends Room {
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
                     if(command[1].equals("diary")){
-                        output.setText("The diary appears to be a girl's, but hasn't been written in for a couple years.\n" +
-                        "There is a small but visible gap in the middle of the diary.\n");
-                        response.setText("<Type 'search' to start the puzzle>");
+                        output.setText("You open the diary to where the gap was. It opens to a page that has been half torn \nout. It reads:" +
+                                "\n\n Today was a good day. It could've gone a lot worse, had it not been for Craig. I had \nrecently broken up with a dickhead boyfriend" +
+                                " so had been feeling down all week. In an \nattempt to cheer me up my older brother took me to our favourite park downtown." +
+                                " I was \nactually beginning to cheer up but then -" +
+                                "\n\n The rest of the entry has been torn out. Feeling a sense of familiarity about this story, \nyou begin looking for the missing part of " +
+                                "the page");
                         Gui.diaryPuzzle = true;
                     }
                 }
