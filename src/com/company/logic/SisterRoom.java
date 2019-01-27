@@ -23,7 +23,6 @@ public class SisterRoom extends Room {
                     response.setText("No item selected to take");
                 } else {
                     takeItem = false;
-                    System.out.println("Taking");
                     String followUp = command[1];
                     for (Item item : itemList) {
                         if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {

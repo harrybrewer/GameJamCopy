@@ -94,8 +94,9 @@ class ComputerGame {
                         output.setText(" As the program runs the display changes between pictures and videos of two young \n boys, seemingly brothers, doing various activities:" +
                                 "\n a day out to the city, a picture of the boys on a roller coaster, on a road trip." +
                                 "\n\n As the program moves through the photos and videos, you slowly begin to recognise the two boys:" +
-                                "\n it is you and your older brother, and some of your most cherished memories together.");
-                        response.setText("You shut down the computer and get up from the desk.");
+                                "\n it is you and your older brother, and some of your most cherished memories together." +
+                                "\n You shut down the computer and get up from the desk.");
+                        response.setText("You are back in the games room");
                         Gui.computerCompleted = true;
                         Gui.usingComputer = false;
                     }
@@ -107,6 +108,9 @@ class ComputerGame {
             case "exit":
                 Gui.usingComputer = false;
                 output.setText("Exiting terminal");
+                break;
+            default:
+                output.setText("Invalid command");
                 break;
         }
     }

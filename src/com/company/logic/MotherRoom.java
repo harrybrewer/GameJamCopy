@@ -24,7 +24,6 @@ public class MotherRoom extends Room{
                     response.setText("No item selected to take");
                 } else {
                     takeItem = false;
-                    System.out.println("Taking");
                     String followUp = command[1];
                     for (Item item : itemList) {
                         if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {
@@ -45,7 +44,7 @@ public class MotherRoom extends Room{
                     if(command[1].equals("locket")){
                         output.setText("Opening the locket reveals a picture of a young man no older than 10 years of age. He \nstrikes a resemblance to someone you know well but you can't quite recall who. " +
                         "\nYou notice the other picture has been misplaced, maybe finding it could give you some \ncontext on who this mysterious yet familiar stranger is?");
-                        response.setText("<Type search to 'start' the puzzle>");
+                        response.setText("<Type 'search' to start the puzzle>");
                         Gui.locketPuzzle = true;
                         break;
                     }else

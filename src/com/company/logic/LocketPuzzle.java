@@ -48,6 +48,11 @@ public class LocketPuzzle {
                     }
                 }
                 break;
+            case "exit":
+                output.setText("You leave the puzzle");
+                response.setText("You are back in the master bedroom");
+                Gui.diaryPuzzle = false;
+                break;
             default:
                 response.setText("No such command");
                 break;

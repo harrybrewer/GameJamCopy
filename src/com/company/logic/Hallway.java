@@ -11,7 +11,7 @@ public class Hallway extends Room {
         roomName = "Hallway";
         description = "After running for what seemed like hours you reach the house. It feels foreign but familiar at the time...\n" +
                 "You've been drawn here for a reason and you're determined to find out why\n" +
-                "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n" +
+                "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n\n" +
                 "An office\n" +
                 "Small bedroom\n" +
                 "Master bedroom\n" +
@@ -27,7 +27,7 @@ public class Hallway extends Room {
             intro = false;
         }
         else{
-            description = "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n" +
+            description = "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n\n" +
                         "An office\n" +
                         "Small bedroom\n" +
                         "Master bedroom\n" +
@@ -54,7 +54,7 @@ public class Hallway extends Room {
                     for(String s: members){
                         switch (s){
                             case "m":
-                                photoOutput.append("You see your mother\n");
+                                photoOutput.append("You see your Mother\n");
                                 break;
                             case "f":
                                 photoOutput.append("You see your Father\n");

@@ -43,6 +43,11 @@ class DiaryPuzzle {
                     }
                 }
                 break;
+            case "exit":
+                output.setText("You leave the puzzle");
+                response.setText("You are back in the small room");
+                Gui.diaryPuzzle = false;
+                break;
             default:
                 response.setText("No such command");
                 break;

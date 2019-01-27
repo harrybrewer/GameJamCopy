@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-    Game object used to deal with the flow of logic.
-
-    Houses any game specific objects and also dictates what the GUI must draw
-*/
 class Game {
     private JTextArea outputRef;
     private JTextArea inputRef;
@@ -18,6 +13,7 @@ class Game {
     private Room currentRoom;
     private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
     private Player player;
+    private boolean finished;
 
     Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
@@ -44,6 +40,7 @@ class Game {
     }
 
     void readUserInput(String command){
+        responseRef.setText("");
         if(Gui.computerCompleted){
             player.familyPhoto.setBrother(1);
         }
@@ -59,110 +56,114 @@ class Game {
 
         if(player.familyPhoto.getTotal() == 4){
             //good ending
-            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, in surprise you see you family.\n" +
-                    "");
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\nYou walk to the door and open it, in surprise you see you family.\n" +
+                    "They have a look of relief on their faces upon seeing you");
             responseRef.setText("You have completed the game");
             inputRef.setText("");
+            finished = true;
         }else if((Gui.safeCompleted && Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken) ||
                 (Gui.locketCompleted && Gui.diaryCompleted && Gui.computerCompleted && Gui.safeBroken)){
             //Mild ending
-            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, you see a woman from the hospital.\n" +
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\nYou walk to the door and open it, you see a woman from the hospital.\n" +
                     "She says to you that you need to come back to the hospital, she says your family are there to meet you");
             responseRef.setText("You have completed the game");
             inputRef.setText("");
+            finished = true;
         }else if(Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken && Gui.safeBroken){
             //Bad ending
-            outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, its the mail man, he has an eviction notice for you.\n" +
+            outputRef.setText("You walk back into the hallway as you hear the doorbell.\nYou walk to the door and open it, its the mail man, he has an eviction notice for you.\n" +
                     "You sit down by the door confused and alone.");
             responseRef.setText("You have completed the game");
             inputRef.setText("");
+            finished = true;
         }
-
-        String[] parsedCommand = CommandParser.parseCommand(command);
-        String followUp;
-        switch (parsedCommand[0]){
-            case "go":
-                if(parsedCommand.length == 1){
-                    responseRef.setText("No destination set");
-                }else {
-                    followUp = parsedCommand[1];
-                    if(currentRoom.roomName.equals("Hallway")) {
-                        //noinspection IfCanBeSwitch
-                        if (followUp.equals("game") || followUp.equals("games")) {
-                            responseRef.setText("Going to the games room");
-                            currentRoom = rooms.get("Brother");
-                            sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("master")) {
-                            currentRoom = rooms.get("Mother");
-                            sendCommand(currentRoom, parsedCommand);
-                            responseRef.setText("Going to the master bedroom");
-                        } else if (followUp.equals("office")) {
-                            responseRef.setText("Going to the office");
-                            currentRoom = rooms.get("Father");
-                            sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("small") || followUp.equals("bedroom")) {
-                            responseRef.setText("Going to the small bedroom");
-                            currentRoom = rooms.get("Sister");
-                            sendCommand(currentRoom, parsedCommand);
+        if(!finished) {
+            String[] parsedCommand = CommandParser.parseCommand(command);
+            String followUp;
+            switch (parsedCommand[0]) {
+                case "go":
+                    if (parsedCommand.length == 1) {
+                        responseRef.setText("No destination set");
+                    } else {
+                        followUp = parsedCommand[1];
+                        if (currentRoom.roomName.equals("Hallway")) {
+                            //noinspection IfCanBeSwitch
+                            if (followUp.equals("game") || followUp.equals("games")) {
+                                responseRef.setText("Going to the games room");
+                                currentRoom = rooms.get("Brother");
+                                sendCommand(currentRoom, parsedCommand);
+                            } else if (followUp.equals("master")) {
+                                currentRoom = rooms.get("Mother");
+                                sendCommand(currentRoom, parsedCommand);
+                                responseRef.setText("Going to the master bedroom");
+                            } else if (followUp.equals("office")) {
+                                responseRef.setText("Going to the office");
+                                currentRoom = rooms.get("Father");
+                                sendCommand(currentRoom, parsedCommand);
+                            } else if (followUp.equals("small") || followUp.equals("bedroom")) {
+                                responseRef.setText("Going to the small bedroom");
+                                currentRoom = rooms.get("Sister");
+                                sendCommand(currentRoom, parsedCommand);
+                            } else {
+                                responseRef.setText("Invalid command");
+                            }
                         } else {
-                            responseRef.setText("Invalid command");
+                            responseRef.setText("You can't go to that room as you aren't in the hallway");
                         }
-                    }else{
-                        responseRef.setText("You can't go to that room as you aren't in the hallway");
+                        inputRef.setText(" ");
                     }
+                    break;
+                case "take":
                     inputRef.setText(" ");
-                }
-                break;
-            case "take":
-                inputRef.setText(" ");
-                sendCommand(currentRoom, parsedCommand);
-                break;
-            case "search":
-                sendCommand(currentRoom, parsedCommand);
-                inputRef.setText(" ");
-                break;
-            case "use":
-                sendCommand(currentRoom, parsedCommand);
-                inputRef.setText(" ");
-                break;
-            case "leave":
-                currentRoom = rooms.get("Hallway");
-                inputRef.setText(" ");
-                sendCommand(currentRoom, parsedCommand);
-                break;
-            case "inventory":
-                inputRef.setText("");
-                ArrayList<Item> userItems = player.getTakenItems();
-                if(userItems.size() > 0){
-                    StringBuilder items = new StringBuilder("Items: \n");
-                    for(Item item : userItems){
-                        items.append(item.getItem()).append("\n");
+                    sendCommand(currentRoom, parsedCommand);
+                    break;
+                case "search":
+                    sendCommand(currentRoom, parsedCommand);
+                    inputRef.setText(" ");
+                    break;
+                case "use":
+                    sendCommand(currentRoom, parsedCommand);
+                    inputRef.setText(" ");
+                    break;
+                case "leave":
+                    currentRoom = rooms.get("Hallway");
+                    inputRef.setText(" ");
+                    sendCommand(currentRoom, parsedCommand);
+                    break;
+                case "inventory":
+                    inputRef.setText("");
+                    ArrayList<Item> userItems = player.getTakenItems();
+                    if (userItems.size() > 0) {
+                        StringBuilder items = new StringBuilder("Items: \n");
+                        for (Item item : userItems) {
+                            items.append(item.getItem()).append("\n");
+                        }
+                        outputRef.setText(items.toString());
+                    } else {
+                        responseRef.setText("You have no items in your inventory");
                     }
-                    outputRef.setText(items.toString());
-                }else{
-                    responseRef.setText("You have no items in your inventory");
-                }
-                break;
-            case "help":
-                outputRef.setText("Help - typing the following commands will help you interact with the game\n\n" +
-                        "search: explore the current room and list items to interact with\n" +
-                        "go <room name>: enter one of the rooms - games room, master bedroom, \n        small bedroom, office\n" +
-                        "take <item name>: pick up an item and add it to your inventory\n" +
-                        "use <item name>: use an item, as long as it is in your inventory\n" +
-                        "inventory: displays the items in your inventory\n" +
-                        "leave: exits the current room and enter the hallway\n" +
-                        "hint: if you need a hint when in a room towards the puzzle"
-                );
-                responseRef.setText("Help page");
-                inputRef.setText("");
-            case "hint":
-                sendCommand(currentRoom, parsedCommand);
-                inputRef.setText(" ");
-                break;
-             default:
-                 responseRef.setText("Invalid command");
-                 inputRef.setText(" ");
-                 break;
+                    break;
+                case "help":
+                    outputRef.setText("Help - typing the following commands will help you interact with the game\n\n" +
+                            "search: explore the current room and list items to interact with\n" +
+                            "go <room name>: enter one of the rooms - games room, master bedroom, \n        small bedroom, office\n" +
+                            "take <item name>: pick up an item and add it to your inventory\n" +
+                            "use <item name>: use an item, as long as it is in your inventory\n" +
+                            "inventory: displays the items in your inventory\n" +
+                            "leave: exits the current room and enter the hallway\n" +
+                            "hint: if you need a hint when in a room towards the puzzle"
+                    );
+                    responseRef.setText("Help page");
+                    inputRef.setText("");
+                case "hint":
+                    sendCommand(currentRoom, parsedCommand);
+                    inputRef.setText(" ");
+                    break;
+                default:
+                    responseRef.setText("Invalid command");
+                    inputRef.setText(" ");
+                    break;
+            }
         }
     }
 
@@ -178,8 +179,8 @@ class Game {
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from\n constant use and the title is barely readable. Opening the page saved by the bookmark you\n read the following" +"\n" +
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));
-        fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June", "you use the calendar"));
-        fatherItems.add(new Item("book", false, "A book all about remembering!", "Examining the front of the book reads - \n" + "\"the KEY to remembering - 23rd edition\""));
+        fatherItems.add(new Item("Calendar", false, "A calendar sheet filled with dates and events", "The calendar page has a single date circled in red pen. The 10th.\n Curiously it's the only date to be circled.... It must be important."));
+        fatherItems.add(new Item("Book", false, "A book all about remembering!", "Examining the front of the book reads - \n" + "\"The KEY to remembering - 23rd edition\""));
         fatherItems.add(new Item("Trophy", false, "An impressive trophy for an impressive someone", "Looking at the trophy, it doesn't look all that helpful..."));
 
         // Brother
