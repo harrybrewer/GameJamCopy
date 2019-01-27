@@ -42,8 +42,8 @@ public class MotherRoom extends Room{
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
                     if(command[1].equals("locket")){
-                        output.setText("Opening the locket reveals a picture of a young man no older than 10 years of age. He strikes a resemblance to someone you know well but you can't quite picture who. " +
-                        "\nYou notice the other picture has been misplaced, maybe finding it could give you some context on who this mysterious yet familiar stranger is?");
+                        output.setText("Opening the locket reveals a picture of a young man no older than 10 years of age. He \nstrikes a resemblance to someone you know well but you can't quite recall who. " +
+                        "\nYou notice the other picture has been misplaced, maybe finding it could give you some \ncontext on who this mysterious yet familiar stranger is?");
                         Gui.locketPuzzle = true;
                         break;
                     }else
