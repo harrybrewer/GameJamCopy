@@ -3,7 +3,7 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class computerGame{
+class computerGame{
     private JTextArea output, response, userInput;
     private String currentFolder = "home";
     private ArrayList<String> documentsFolder = new ArrayList<>(), downloadsFolder = new ArrayList<>(), musicFolder = new ArrayList<>();
@@ -15,38 +15,38 @@ public class computerGame{
         initialiseFolders();
     }
 
-    public void readUserInput(String command){
+    void readUserInput(String command){
 
         String[]parsedCommand=CommandParser.parseCommand(command);
         output.setText("");
         userInput.setText("");
-        response.setText("Computer running");
+        response.setText("Computer running\nFor options type 'help'");
         String followUp;
         switch(parsedCommand[0]){
             case "dir":
             case "ls" :
-                String print = "";
+                StringBuilder print = new StringBuilder();
                 switch (currentFolder) {
                     case "home":
-                        print+="Documents\nDownloads\nMusic";
+                        print.append("Documents\nDownloads\nMusic");
                         break;
                     case "doc":
                         for (String s : documentsFolder) {
-                            print += s + "\n";
+                            print.append(s).append("\n");
                         }
                         break;
                     case "music":
                         for (String s : musicFolder) {
-                            print += s + "\n";
+                            print.append(s).append("\n");
                         }
                         break;
                     case "down":
                         for (String s : downloadsFolder) {
-                            print += s + "\n";
+                            print.append(s).append("\n");
                         }
                         break;
                 }
-                output.setText(print);
+                output.setText(print.toString());
                 break;
             case "cd":
                 if(parsedCommand.length > 1) {
@@ -70,16 +70,29 @@ public class computerGame{
                 }
                 break;
             case "help":
-
+                String out = "Help Menu\n";
+                out += "dir or ls - Will list current directories\n";
+                out += "cd <file> - Will change directory\n";
+                out += "run <executable> - Will run a program\n";
+                out += "exit - Stop using the computer\n";
+                output.setText(out);
                 break;
             case "run":
                 if(parsedCommand.length > 1) {
                     followUp = parsedCommand[1];
                     if (followUp.equals("virus.exe")) {
-                        output.setText("Computer dies");
+                        String virusOut = "Windows detected a hard disk problem\n";
+                        virusOut += "Please run the Hard Disk Test in System Diagnostics\n";
+                        virusOut += "Hard Disk # (XXX)";
+                        virusOut += "For more information, please visit:\n";
+                        output.setText(virusOut);
+                        response.setText("You have stopped using the computer");
+                        Gui.computerBroken = true;
                         Gui.usingComputer = false;
                     } else if (followUp.equals("things.exe")) {
-                        output.setText("The good kush");
+                        output.setText("The good kush\nYou remember your Brother cause he was a pot head");
+                        Gui.computerCompleted = true;
+                        Gui.usingComputer = false;
                     }
                 }else{
                     response.setText("Please enter a value after the command");
