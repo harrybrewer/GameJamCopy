@@ -8,27 +8,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Gui extends JFrame {
-    // variable setup
 
     JTextArea userInput;
-
     Game game;
     ComputerGame comp;
     SafePuzzle safe;
     DiaryPuzzle diary;
     LocketPuzzle locket;
-    //DON'T TOUCH!
-    static boolean computerBroken;
-    static boolean computerCompleted;
-    static boolean safeCompleted;
-    static boolean safeBroken;
-    static boolean usingComputer;
-    static boolean safePuzzle;
-    static boolean diaryPuzzle;
-    static boolean diaryCompleted;
-    static boolean locketPuzzle;
-    static boolean locketCompleted;
-    // CAN TOUCH
+    static boolean computerBroken, computerCompleted, usingComputer;
+    static boolean safeCompleted, safeBroken, safePuzzle;
+    static boolean diaryPuzzle, diaryCompleted;
+    static boolean locketPuzzle,locketCompleted;
+
     private Gui() {
         JPanel mainDisplay = new JPanel();
         JPanel textDisplay = new JPanel();
@@ -74,9 +65,9 @@ public class Gui extends JFrame {
         userInput.addKeyListener(new InputListener(this));
 
         // Puzzle and game init
-        game = new Game(output, this.userInput, response);
+        game = new Game(output, userInput, response);
         comp = new ComputerGame(output, response, userInput);
-        safe = new SafePuzzle(output, response);
+        safe = new SafePuzzle(output, response, userInput);
         diary = new DiaryPuzzle(output, response, userInput);
         locket = new LocketPuzzle(output,response,userInput);
 

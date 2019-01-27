@@ -35,16 +35,16 @@ public class Hallway extends Room {
                     for(String s: members){
                         switch (s){
                             case "m":
-                                photoOutput.append("You see you Mother");
+                                photoOutput.append("You see your mother\n");
                                 break;
                             case "f":
-                                photoOutput.append("You see you Father");
+                                photoOutput.append("You see your Father\n");
                                 break;
                             case "s":
-                                photoOutput.append("You see you Sister");
+                                photoOutput.append("You see your Sister\n");
                                 break;
                             case "b":
-                                photoOutput.append("You see you Brother");
+                                photoOutput.append("You see your Brother\n");
                                 break;
                         }
                     }

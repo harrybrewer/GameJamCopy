@@ -90,7 +90,7 @@ class ComputerGame {
                         Gui.computerBroken = true;
                         Gui.usingComputer = false;
 
-                    } else if (followUp.equals("my_first_program.exe")) {
+                    } else if (followUp.equals("my")) {
                         output.setText("As the program runs you get memories of your brother,\nand when he taught you how to program");
                         Gui.computerCompleted = true;
                         Gui.usingComputer = false;
@@ -109,7 +109,7 @@ class ComputerGame {
 
     private void initialiseFolders(){
         documentsFolder.add("VIRUS.exe");
-        documentsFolder.add("Things.exe");
+        documentsFolder.add("my first program.exe");
 
         downloadsFolder.add("Single_Russians.html");
         downloadsFolder.add("BanderSnatch.pdf");

@@ -6,10 +6,12 @@ class SafePuzzle {
     private static int lives = 3;
     private JTextArea output;
     private JTextArea response;
+    private JTextArea userInput;
 
-    SafePuzzle(JTextArea output, JTextArea response){
+    SafePuzzle(JTextArea output, JTextArea response, JTextArea userInput){
         this.output = output;
         this.response = response;
+        this.userInput = userInput;
     }
 
     void readUserInput(String command){
@@ -19,8 +21,10 @@ class SafePuzzle {
             Gui.safePuzzle = false;
             return;
         }
+        userInput.setText("");
         String[] parsedCommand = CommandParser.parseCommand(command);
         output.setText("");
+
         response.setText("Enter the 4 digit key code like -: 0000\n"+
                         "<type exit to leave the safe alone>");
         switch (parsedCommand[0]){
@@ -34,6 +38,7 @@ class SafePuzzle {
                         "It's clear as day now. The man who worked in this office was your father...\n");
                 Gui.safeCompleted = true;
                 Gui.safePuzzle = false;
+                break;
             default:
                 lives--;
                 if(lives<=0){

@@ -42,11 +42,14 @@ public class FatherRoom extends Room {
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
                     if(command[1].equals("safe")){
-                        if(!Gui.safeBroken) {
+                        if(!Gui.safeBroken && !Gui.safeCompleted) {
                             output.setText("The safe seems to be locked using a key code of sorts.\n." +
                                     "<press enter to type in code>");
                             Gui.safePuzzle = true;
-                        }else{
+                        }else if(Gui.safeCompleted){
+                            output.setText("You have already opened the safe");
+                        }
+                        else{
                             output.setText("You have already broken the safe");
                         }
 
