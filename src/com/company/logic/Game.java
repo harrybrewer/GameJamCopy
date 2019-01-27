@@ -62,20 +62,20 @@ class Game {
             outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, in surprise you see you family.\n" +
                     "");
             responseRef.setText("You have completed the game");
-            outputRef.setText("");
+            inputRef.setText("");
         }else if((Gui.safeCompleted && Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken) ||
                 (Gui.locketCompleted && Gui.diaryCompleted && Gui.computerCompleted && Gui.safeBroken)){
             //Mild ending
             outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, you see a woman from the hospital.\n" +
                     "She says to you that you need to come back to the hospital, she says your family are there to meet you");
             responseRef.setText("You have completed the game");
-            outputRef.setText("");
+            inputRef.setText("");
         }else if(Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken && Gui.safeBroken){
             //Bad ending
             outputRef.setText("You walk back into the hallway as you hear the doorbell.\n You walk to the door and open it, its the mail man, he has an eviction notice for you.\n" +
                     "You sit down by the door confused and alone.");
             responseRef.setText("You have completed the game");
-            outputRef.setText("");
+            inputRef.setText("");
         }
 
         String[] parsedCommand = CommandParser.parseCommand(command);
@@ -115,22 +115,18 @@ class Game {
                 break;
             case "take":
                 inputRef.setText(" ");
-                responseRef.setText("Take");
                 sendCommand(currentRoom, parsedCommand);
                 break;
             case "search":
                 sendCommand(currentRoom, parsedCommand);
-                responseRef.setText("Search");
                 inputRef.setText(" ");
                 break;
             case "use":
                 sendCommand(currentRoom, parsedCommand);
-                responseRef.setText("Use");
                 inputRef.setText(" ");
                 break;
             case "leave":
                 currentRoom = rooms.get("Hallway");
-                responseRef.setText("Leave");
                 inputRef.setText(" ");
                 sendCommand(currentRoom, parsedCommand);
                 break;
@@ -161,8 +157,8 @@ class Game {
                 inputRef.setText("");
             case "hint":
                 sendCommand(currentRoom, parsedCommand);
-                responseRef.setText("Use");
                 inputRef.setText(" ");
+                break;
              default:
                  responseRef.setText("Invalid command");
                  inputRef.setText(" ");

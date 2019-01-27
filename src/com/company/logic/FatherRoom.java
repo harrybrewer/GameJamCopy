@@ -38,14 +38,13 @@ public class FatherRoom extends Room {
                     }
                 }
                 break;
-
             case "use":
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
                     if(command[1].equals("safe")){
                         if(!Gui.safeBroken && !Gui.safeCompleted) {
-                            output.setText("The safe seems to be locked using a key code of sorts.\n." +
-                                    "<press enter to type in code>");
+                            output.setText("The safe seems to be locked using a key code of sorts.\n.");
+                            response.setText("<Please type in the code e.g. 0000 and press enter>");
                             Gui.safePuzzle = true;
                         }else if(Gui.safeCompleted){
                             output.setText("You have already opened the safe");
@@ -58,12 +57,11 @@ public class FatherRoom extends Room {
                         output.setText("You can't seem to find this item");
                 }
                 break;
-
             case "search":
                 output.setText(displaySearch());
                 break;
             case "hint":
-                output.setText(hint);
+                response.setText(hint);
                 break;
         }
     }

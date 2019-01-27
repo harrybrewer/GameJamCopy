@@ -51,7 +51,7 @@ public class BrotherRoom extends Room {
                 output.setText(displaySearch());
                 break;
             case "hint":
-                output.setText(hint);
+                response.setText(hint);
                 break;
 
         }
@@ -65,8 +65,8 @@ public class BrotherRoom extends Room {
     private void useComputer(){
         if(!Gui.computerBroken) {
             output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what " +
-                    "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.\n\n" +
-                    "<Press enter to access terminal>");
+                    "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.");
+            response.setText("<Type 'dir' to start the puzzle>");
             Gui.usingComputer = true;
         }else{
             output.setText("You look back at the computer and it is still displaying the same error message");

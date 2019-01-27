@@ -36,6 +36,7 @@ class SafePuzzle {
                                 "The safe door unlocks. You slowly pull the door open to find a pristine old stopwatch." +
                         "\nAs you go to touch the stopwatch an overdose of emotions and memories of a father figure attack your mind.\n" +
                         "It's clear as day now. The man who worked in this office was your father...\n");
+                response.setText("You are now back in the office");
                 Gui.safeCompleted = true;
                 Gui.safePuzzle = false;
                 break;

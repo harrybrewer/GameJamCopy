@@ -35,7 +35,7 @@ public class LocketPuzzle {
                                     " missing space in the locket and it fits perfectly. Seeing the \ntwo photos side by side triggers your memory and you now " +
                                     " recognise that the young \nboy is you and the woman is your mother.\n" +
                                     "You had given this locket as a gift to your mother as a young boy");
-                            response.setText("You pocket the locket and re-enter the master bedroom");
+                            response.setText("You are now back in the master bedroom");
                             Gui.locketCompleted = true;
                             Gui.locketPuzzle = false;
                             break;

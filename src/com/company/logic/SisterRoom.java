@@ -43,7 +43,8 @@ public class SisterRoom extends Room {
                 if(!hasItem){
                     if(command[1].equals("diary")){
                         output.setText("The diary appears to be a girl's, but hasn't been written in for a couple years.\n" +
-                        "There is a small but visible gap in the middle of the diary.");
+                        "There is a small but visible gap in the middle of the diary.\n");
+                        response.setText("<Type 'search' to start the puzzle>");
                         Gui.diaryPuzzle = true;
                     }
                 }
@@ -52,7 +53,7 @@ public class SisterRoom extends Room {
                 output.setText(displaySearch());
                 break;
             case "hint":
-                output.setText(hint);
+                response.setText(hint);
                 break;
         }
     }
