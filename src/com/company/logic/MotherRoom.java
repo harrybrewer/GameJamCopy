@@ -9,8 +9,7 @@ public class MotherRoom extends Room{
         super(output, response,itemList, player);
         roomName = "Master bedroom";
         description = "This seems to be the master bedroom. The room is generally pretty neat; the bed has \nbeen made, the bedside table is clean, the dressing table" +
-                " has a few pieces of cosmetics \nlying around.";
-
+                " has a few pieces of cosmetics \nlying around. A locket sticking out from underneath the bed does seem out of place.";
     }
 
     @Override

@@ -8,7 +8,7 @@ public class SisterRoom extends Room {
         super(output, response, itemList, player);
         roomName = "Bedroom";
         description = "This room appears to be a shared bedroom. There are two beds on either side against\n the walls. The room consists of objects you" +
-                " would expect to be in a bedroom.";
+                " would expect to be in a bedroom. A diary on the desk does catch your eye, though.";
     }
 
     @Override
