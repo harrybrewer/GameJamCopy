@@ -7,8 +7,9 @@ public class MotherRoom extends Room{
 
     MotherRoom(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
         super(output, response,itemList, player);
-        roomName = "Parent's room";
-        description = "This seems to be the master bedroom";
+        roomName = "Master bedroom";
+        description = "This seems to be the master bedroom. The room is generally pretty neat; the bed has \nbeen made, the bedside table is clean, the dressing table" +
+                " has a few pieces of cosmetics \nlying around.";
 
     }
 
