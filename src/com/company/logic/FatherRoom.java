@@ -9,7 +9,7 @@ public class FatherRoom extends Room {
         super(output,response,itemList,player);
         roomName = "Office";
         description = "Walking into the office you appreciate the neatness and order of the room.\n"+
-        "A single ray of light exposed from the crack in the blinds hits the desk, almost like a\n spotlight in a play.\n" +
+                "A single ray of light exposed from the crack in the blinds hits the desk, almost like a\n spotlight in a play.\n\n" +
                 "On the opposite wall you notice a safe embedded into the foundations of the house, \n whatever is in here must be important...";
     }
     @Override
