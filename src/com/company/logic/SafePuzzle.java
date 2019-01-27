@@ -31,11 +31,13 @@ public class SafePuzzle {
                                 "The safe door unlocks. You slowly pull the door open to find a pristine old stopwatch." +
                         "\nAs you go to touch the stopwatch an overdose of emotions and memories of a father figure attack your mind.\n" +
                         "It's clear as day now. The man who worked in this office was your father...\n");
+                Gui.safeCompleted = true;
                 Gui.safePuzzle = false;
             default:
                 lives--;
                 if(lives<=0){
                     output.setText("The safe buzzes for the last time. It seems you have triggered the automatic lock down, it's impossible to open now!");
+                    Gui.safeBrokem = true;
                     Gui.safePuzzle = false;
                     break;
                 }

@@ -10,16 +10,18 @@ import java.awt.event.KeyListener;
 public class Gui extends JFrame {
     // variable setup
 
-    public JTextArea userInput;
-    public JTextArea output;
-    public JTextArea response;
-    public static boolean usingComputer;
-    public static boolean safePuzzle;
+    JTextArea userInput;
+    static boolean usingComputer;
+    static boolean safePuzzle;
     Game game;
     computerGame comp;
     SafePuzzle safe;
+    static boolean computerBroken;
+    static boolean computerCompleted;
+    static boolean safeCompleted;
+    static boolean safeBroken;
 
-    public Gui() {
+    private Gui() {
         JPanel mainDisplay = new JPanel();
         JPanel textDisplay = new JPanel();
         JPanel responseDisplay = new JPanel();
@@ -28,6 +30,7 @@ public class Gui extends JFrame {
         add(textDisplay, BorderLayout.SOUTH);
 
 
+        JTextArea response;
         responseDisplay.add(response = new JTextArea());
         response.setLineWrap(true);
         response.setPreferredSize(new Dimension(780, 100));
@@ -37,6 +40,7 @@ public class Gui extends JFrame {
         response.setFont(new Font("Arial", Font.PLAIN, 20));
 
 
+        JTextArea output;
         mainDisplay.add(output = new JTextArea());
         output.setLineWrap(true);
         output.setPreferredSize(new Dimension(780, 360));
@@ -64,7 +68,7 @@ public class Gui extends JFrame {
         // Puzzle and game init
         game = new Game(output, this.userInput, response);
         comp = new computerGame(output, response, userInput);
-        safe = new SafePuzzle(output,response,userInput);
+        safe = new SafePuzzle(output, response,userInput);
     }
 
     public static void main(String[] args) {

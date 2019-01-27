@@ -10,7 +10,7 @@ import java.util.Map;
 
     Houses any game specific objects and also dictates what the GUI must draw
 */
-public class Game {
+class Game {
     private JTextArea outputRef;
     private JTextArea inputRef;
     private JTextArea responseRef;
@@ -19,7 +19,7 @@ public class Game {
     private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
     private Player player;
 
-    public Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
+    Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
         this.inputRef = inputRef;
         this.responseRef = responseRef;
@@ -37,13 +37,20 @@ public class Game {
     }
 
     // Master method to activate the game;
-    public void run(){
+    void run(){
         currentRoom = rooms.get("Hallway");
         String[] s = {"leave"};
         sendCommand(currentRoom, s);
     }
 
-    public void readUserInput(String command){
+    void readUserInput(String command){
+        if(Gui.computerCompleted){
+            player.familyPhoto.setBrother(1);
+        }
+        if(Gui.safeCompleted){
+            player.familyPhoto.setFather(1);
+        }
+
         String[] parsedCommand = CommandParser.parseCommand(command);
         String followUp;
         switch (parsedCommand[0]){
@@ -139,6 +146,7 @@ public class Game {
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));
         fatherItems.add(new Item("Calendar", false, "A calendar open to the month of June", "you use the calendar"));
         fatherItems.add(new Item("book", false, "A book all about remembering!", "Examining the front of the book reads - \n" + "\"the KEY to remembering - 23rd edition\""));
+        fatherItems.add(new Item("Trophy", false, "An impressive trophy for an impressive someone", "Looking at the trophy, it doesn't look all that helpful..."));
 
         // Brother
         brotherItems.add(new Item("Laptop", false, "A retro computer form the 90s", "you use the computer"));
@@ -164,21 +172,21 @@ class Item {
          this.useDescription = useDescription;
      }
 
-    public String getItem() {
+    String getItem() {
         return item;
     }
 
-    public Boolean getTaken() {
+    Boolean getTaken() {
         return taken;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public void setTaken(Boolean taken) { this.taken = taken; }
+    void setTaken(Boolean taken) { this.taken = taken; }
 
-    public String getUseDescription() {
+    String getUseDescription() {
         return useDescription;
     }
 }
