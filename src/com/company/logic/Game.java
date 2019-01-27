@@ -65,7 +65,7 @@ class Game {
                 (Gui.locketCompleted && Gui.diaryCompleted && Gui.computerCompleted && Gui.safeBroken)){
             //Mild ending
             outputRef.setText("You walk back into the hallway as you hear the doorbell.\nYou walk to the door and open it, you see a woman from the hospital.\n" +
-                    "She says to you that you need to come back to the hospital, she says your family are there to meet you");
+                    "She says to you that you need to come back to the hospital,\n she says your family are there to meet you");
             responseRef.setText("You have completed the game");
             inputRef.setText("");
             finished = true;
@@ -184,12 +184,12 @@ class Game {
         fatherItems.add(new Item("Trophy", false, "An impressive trophy for an impressive someone", "Looking at the trophy, it doesn't look all that helpful..."));
 
         // Brother
-        brotherItems.add(new Item("book", false, "A game strategy guide", "You examine a Final Fantasy VI strategy guide"));
+        brotherItems.add(new Item("Guide", false, "A game strategy guide", "You examine a Final Fantasy VI strategy guide"));
         brotherItems.add(new Item("Controller" , false, "A game controller", "You use the Playstation controller to play a level of Crash Bandicoot, you do badly"));
         brotherItems.add(new Item("BoardGame" , false, "Generic board game", "This game seems like a Monopoly of Operations, it really gives your head a twister"));
 
         //Sister
-        sisterItems.add(new Item("Book", false, "A fantasy book", "You look at the fancy hardcover of the book"));
+        sisterItems.add(new Item("TextBook", false, "A school textbook", "You look through the school text book, it's not very interesting"));
         sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "You flick through the notebook and see the writing of a girl"));
         sisterItems.add(new Item("Toy" , false, "A stuffed animal", "You squeeze the stuffed dog and it barks"));
     }
