@@ -141,6 +141,8 @@ class Game {
     private void setUpItems(){
         // Mother
         motherItems.add(new Item("Vase", false, "Poop", "you use the vase"));
+        motherItems.add(new Item("Locket", false, "A small heart shaped golden locket", "Opening the locket reveals a picture of a young man no older than 10 years of age. He strikes a resemblance to someone you know well but you can't quite picture who. " +
+                "\nYou notice the other picture has been misplaced, maybe finding it could give you some context on who this mysterious yet familiar stranger is?"));
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from\n constant use and the title is barely readable. Opening the page saved by the bookmark you\n read the following" +"\n" +
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));

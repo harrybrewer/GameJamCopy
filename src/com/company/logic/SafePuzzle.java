@@ -37,7 +37,7 @@ public class SafePuzzle {
                 lives--;
                 if(lives<=0){
                     output.setText("The safe buzzes for the last time. It seems you have triggered the automatic lock down, it's impossible to open now!");
-                    Gui.safeBrokem = true;
+                    Gui.safeBroken = true;
                     Gui.safePuzzle = false;
                     break;
                 }

@@ -41,8 +41,10 @@ public class MotherRoom extends Room{
             case "use":
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
-                    if(command[1].equals("safe")){
-                        output.setText("The safe seems to be locked using a key code of sorts.");
+                    if(command[1].equals("locket")){
+                        output.setText("Opening the locket reveals a picture of a young man no older than 10 years of age. He strikes a resemblance to someone you know well but you can't quite picture who. " +
+                        "\nYou notice the other picture has been misplaced, maybe finding it could give you some context on who this mysterious yet familiar stranger is?");
+
                         break;
                     }else
                         output.setText("You can't seem to find this item");
