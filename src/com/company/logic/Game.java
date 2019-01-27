@@ -18,7 +18,6 @@ class Game {
     private Room currentRoom;
     private ArrayList<Item> motherItems = new ArrayList<>(), brotherItems = new ArrayList<>(), fatherItems = new ArrayList<>(), sisterItems = new ArrayList<>();
     private Player player;
-    public boolean intro = true;
 
     Game(JTextArea outputRef, JTextArea inputRef, JTextArea responseRef){
         this.outputRef = outputRef;
@@ -56,6 +55,15 @@ class Game {
         }
         if(Gui.locketCompleted){
             player.familyPhoto.setMother(1);
+        }
+
+        if(player.familyPhoto.getTotal() == 4){
+            //good ending
+        }else if((Gui.safeCompleted && Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken) ||
+                (Gui.locketCompleted && Gui.diaryCompleted && Gui.computerCompleted && Gui.safeBroken)){
+            //Mild ending
+        }else if(Gui.diaryCompleted && Gui.locketCompleted && Gui.computerBroken && Gui.safeBroken){
+            //Bad ending
         }
 
         String[] parsedCommand = CommandParser.parseCommand(command);
@@ -155,7 +163,9 @@ class Game {
 
     private void setUpItems(){
         // Mother
-        motherItems.add(new Item("Vase", false, "This is a vase", "you use the vase"));
+        motherItems.add(new Item("Vase", false, "A integrate vase", "You examine the vase, it looks ornate, highly decorative"));
+        motherItems.add(new Item("Lamp" , false, "This is a lamp", "Its just a lamp"));
+        motherItems.add(new Item("Clock" , false, "A alarm clock", "Tick tock goes the clock"));
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from\n constant use and the title is barely readable. Opening the page saved by the bookmark you\n read the following" +"\n" +
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));
@@ -164,12 +174,14 @@ class Game {
         fatherItems.add(new Item("Trophy", false, "An impressive trophy for an impressive someone", "Looking at the trophy, it doesn't look all that helpful..."));
 
         // Brother
-        brotherItems.add(new Item("Laptop", false, "A retro computer form the 90s", "you use the computer"));
-        brotherItems.add(new Item("Football table", false, "A classic football table", "you use the football table"));
+        brotherItems.add(new Item("book", false, "A game strategy guide", "You examine a Final Fantasy VI strategy guide"));
+        brotherItems.add(new Item("Controller" , false, "A game controller", "You use the Playstation controller to play a level of Crash Bandicoot, you do badly"));
+        brotherItems.add(new Item("BoardGame" , false, "Generic board game", "This game seems like a Monopoly of Operations, it really gives your head a twister"));
 
         //Sister
-        sisterItems.add(new Item("Book", false, "", "The diary seems to be written from the perspective of young woman. It contains "));
-        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "you use the notebook"));
+        sisterItems.add(new Item("Book", false, "A fantasy book", "You look at the fancy hardcover of the book"));
+        sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "You flick through the notebook and see the writing of a girl"));
+        sisterItems.add(new Item("Toy" , false, "A stuffed animal", "You squeeze the stuffed dog and it barks"));
     }
 }
 
