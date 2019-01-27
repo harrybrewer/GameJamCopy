@@ -44,7 +44,7 @@ public class MotherRoom extends Room{
                     if(command[1].equals("locket")){
                         output.setText("Opening the locket reveals a picture of a young man no older than 10 years of age. He strikes a resemblance to someone you know well but you can't quite picture who. " +
                         "\nYou notice the other picture has been misplaced, maybe finding it could give you some context on who this mysterious yet familiar stranger is?");
-
+                        Gui.locketPuzzle = true;
                         break;
                     }else
                         output.setText("You can't seem to find this item");
@@ -61,7 +61,4 @@ public class MotherRoom extends Room{
         output.setText(roomName + "\n" + description);
     }
 
-    private void puzzleControl(){
-
-    }
 }

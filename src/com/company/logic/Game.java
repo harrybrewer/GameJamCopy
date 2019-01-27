@@ -50,6 +50,12 @@ class Game {
         if(Gui.safeCompleted){
             player.familyPhoto.setFather(1);
         }
+        if(Gui.diaryCompleted){
+            player.familyPhoto.setSister(1);
+        }
+        if(Gui.locketCompleted){
+            player.familyPhoto.setMother(1);
+        }
 
         String[] parsedCommand = CommandParser.parseCommand(command);
         String followUp;
@@ -60,20 +66,21 @@ class Game {
                 }else {
                     followUp = parsedCommand[1];
                     if(currentRoom.roomName.equals("Hallway")) {
-                        if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
-                            responseRef.setText("Going to Brothers");
+                        //noinspection IfCanBeSwitch
+                        if (followUp.equals("game") || followUp.equals("games")) {
+                            responseRef.setText("Going to the games room");
                             currentRoom = rooms.get("Brother");
                             sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
+                        } else if (followUp.equals("master")) {
                             currentRoom = rooms.get("Mother");
                             sendCommand(currentRoom, parsedCommand);
-                            responseRef.setText("Going to mothers");
-                        } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
-                            responseRef.setText("Going to Fathers");
+                            responseRef.setText("Going to the master bedroom");
+                        } else if (followUp.equals("office")) {
+                            responseRef.setText("Going to the office");
                             currentRoom = rooms.get("Father");
                             sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
-                            responseRef.setText("Going to Sisters");
+                        } else if (followUp.equals("small") || followUp.equals("bedroom")) {
+                            responseRef.setText("Going to the small bedroom");
                             currentRoom = rooms.get("Sister");
                             sendCommand(currentRoom, parsedCommand);
                         } else {
@@ -87,8 +94,8 @@ class Game {
                 break;
             case "take":
                 inputRef.setText(" ");
+                responseRef.setText("Take");
                 sendCommand(currentRoom, parsedCommand);
-
                 break;
             case "search":
                 sendCommand(currentRoom, parsedCommand);
@@ -111,10 +118,6 @@ class Game {
                 inputRef.setText(" ");
                 sendCommand(currentRoom, parsedCommand);
                 break;
-            case "help":
-                responseRef.setText("Help page");
-                inputRef.setText("");
-                break;
             case "inventory":
                 inputRef.setText("");
                 ArrayList<Item> userItems = player.getTakenItems();
@@ -127,8 +130,19 @@ class Game {
                 }else{
                     responseRef.setText("You have no items in your inventory");
                 }
+                break;
+            case "help":
+                outputRef.setText("Help - typing the following commands will help you interact with the game\n\n" +
+                        "search: explore the current room and list items to interact with\n" +
+                        "go <room name>: enter one of the rooms - games room, master bedroom, \n        small bedroom, office\n" +
+                        "take <item name>: pick up an item and add it to your inventory\n" +
+                        "use <item name>: use an item, as long as it is in your inventory\n" +
+                        "inventory: displays the items in your inventory\n" +
+                        "leave: exits the current room and enter the hallway");
+                responseRef.setText("Help page");
+                inputRef.setText("");
              default:
-                 inputRef.setText("Invalid command");
+                 responseRef.setText("Invalid command");
                  inputRef.setText(" ");
                  break;
         }
@@ -140,9 +154,7 @@ class Game {
 
     private void setUpItems(){
         // Mother
-        motherItems.add(new Item("Vase", false, "Poop", "you use the vase"));
-        motherItems.add(new Item("Locket", false, "A small heart shaped golden locket", "Opening the locket reveals a picture of a young man no older than 10 years of age. He strikes a resemblance to someone you know well but you can't quite picture who. " +
-                "\nYou notice the other picture has been misplaced, maybe finding it could give you some context on who this mysterious yet familiar stranger is?"));
+        motherItems.add(new Item("Vase", false, "This is a vase", "you use the vase"));
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from\n constant use and the title is barely readable. Opening the page saved by the bookmark you\n read the following" +"\n" +
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));
@@ -155,8 +167,7 @@ class Game {
         brotherItems.add(new Item("Football table", false, "A classic football table", "you use the football table"));
 
         //Sister
-        sisterItems.add(new Item("Diary", false, "The diary appears to be a girl's, but hasn't been written in for a couple years. " +
-                "There is a small but visible gap in the middle of the diary.", "The diary seems to be written from the perspective of young woman. It contains "));
+        sisterItems.add(new Item("Book", false, "", "The diary seems to be written from the perspective of young woman. It contains "));
         sisterItems.add(new Item("Notebook", false, "A notebook consisting of high school notes.", "you use the notebook"));
     }
 }

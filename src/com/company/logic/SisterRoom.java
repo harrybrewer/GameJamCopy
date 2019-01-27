@@ -40,7 +40,11 @@ public class SisterRoom extends Room {
             case "use":
                 boolean hasItem = fetchItemFromInventory(command[1]);
                 if(!hasItem){
-                    // Add potential usable item in room if we want
+                    if(command[1].equals("diary")){
+                        output.setText("The diary appears to be a girl's, but hasn't been written in for a couple years.\n" +
+                        "There is a small but visible gap in the middle of the diary.");
+                        Gui.diaryPuzzle = true;
+                    }
                 }
                 break;
             case "search":

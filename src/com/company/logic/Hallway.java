@@ -10,7 +10,7 @@ public class Hallway extends Room {
         super(output, response, itemList, player);
         roomName = "Hallway";
         description = "You are in the hallway, there are 4 rooms you can enter. \n" +
-                "There is a master a bedroom, an office, a games room and a children's bedroom";
+                "There is a master a bedroom, an office, a games room and a small bedroom";
     }
 
     @Override

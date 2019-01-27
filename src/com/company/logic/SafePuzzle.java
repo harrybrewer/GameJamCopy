@@ -2,16 +2,17 @@ package com.company.logic;
 
 import javax.swing.*;
 
-public class SafePuzzle {
+class SafePuzzle {
     private static int lives = 3;
-    private JTextArea output, response, userInput;
-    public SafePuzzle(JTextArea output, JTextArea response, JTextArea userInput){
+    private JTextArea output;
+    private JTextArea response;
+
+    SafePuzzle(JTextArea output, JTextArea response){
         this.output = output;
         this.response = response;
-        this.userInput = userInput;
     }
 
-    public void readUserInput(String command){
+    void readUserInput(String command){
         if(lives <=0){
             output.setText("You broke the safe!\n"+
             "<type exit to leave the safe>");

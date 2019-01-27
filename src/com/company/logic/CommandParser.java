@@ -1,6 +1,6 @@
 package com.company.logic;
 
-public class CommandParser {
+class CommandParser {
 
     static String[] parseCommand(String plainText) {
         plainText = plainText.toLowerCase();

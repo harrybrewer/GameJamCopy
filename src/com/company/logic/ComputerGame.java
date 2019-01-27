@@ -3,12 +3,12 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 
-class computerGame{
+class ComputerGame {
     private JTextArea output, response, userInput;
     private String currentFolder = "home";
     private ArrayList<String> documentsFolder = new ArrayList<>(), downloadsFolder = new ArrayList<>(), musicFolder = new ArrayList<>();
 
-    computerGame(JTextArea output, JTextArea response, JTextArea userInput){
+    ComputerGame(JTextArea output, JTextArea response, JTextArea userInput){
         this.output = output;
         this.response = response;
         this.userInput = userInput;
@@ -89,8 +89,9 @@ class computerGame{
                         response.setText("You have stopped using the computer");
                         Gui.computerBroken = true;
                         Gui.usingComputer = false;
-                    } else if (followUp.equals("things.exe")) {
-                        output.setText("The good kush\nYou remember your Brother cause he was a pot head");
+
+                    } else if (followUp.equals("my_first_program.exe")) {
+                        output.setText("As the program runs you get memories of your brother,\nand when he taught you how to program");
                         Gui.computerCompleted = true;
                         Gui.usingComputer = false;
                     }
@@ -118,5 +119,6 @@ class computerGame{
         musicFolder.add("Take_On_Me.mp3");
         musicFolder.add("Never_Gunna_Give_You_Up.mp3");
         musicFolder.add("Waterloo.mp3");
+        musicFolder.add("Country_roads.mp3");
     }
 }
