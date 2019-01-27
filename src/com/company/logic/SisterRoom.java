@@ -3,12 +3,12 @@ package com.company.logic;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class BrotherRoom extends Room {
-
-    BrotherRoom(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
+public class SisterRoom extends Room {
+    SisterRoom(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
         super(output, response, itemList, player);
-        roomName = "Games room";
-        description = "This room appears to be a games room. There is an old computer on the desk in the corner.";
+        roomName = "Bedroom";
+        description = "This room appears to be a shared bedroom. There are two beds on either side against\n the walls. The room consists of objects you" +
+                " would expect to be in a bedroom.";
     }
 
     @Override
@@ -26,7 +26,8 @@ public class BrotherRoom extends Room {
                     String followUp = command[1];
                     for (Item item : itemList) {
                         if (item.getItem().toLowerCase().equals(followUp) && !item.getTaken()) {
-                            response.setText("You pick up the " + item.getItem());
+                            output.setText("You pick up the " + item.getItem() + "\n" + item.getDescription());
+                            response.setText("");
                             player.addItem(item);
                             takeItem = true;
                         }
@@ -38,11 +39,8 @@ public class BrotherRoom extends Room {
                 break;
             case "use":
                 boolean hasItem = fetchItemFromInventory(command[1]);
-                if (!hasItem) {
-                    if (command[1].toLowerCase().equals("computer")) {
-                        useComputer();
-                    } else
-                        output.setText("You can't seem to find this item");
+                if(!hasItem){
+                    // Add potential usable item in room if we want
                 }
                 break;
             case "search":
@@ -53,17 +51,6 @@ public class BrotherRoom extends Room {
 
     @Override
     public void display() {
-        output.setText(roomName + "\n" + description);
-    }
-
-    private void useComputer(){
-        if(!Gui.computerBroken) {
-            output.setText("You fire up the computer and a Windows XP operating system begins to boot up. The display changes to a background of what " +
-                    "appears to be a younger version of yourself and a boy who looks like a slightly older version of yourself.\n\n" +
-                    "<Press enter to access terminal>");
-            Gui.usingComputer = true;
-        }else{
-            output.setText("You look back at the computer and it is still displaying the same error message");
-        }
+            output.setText(roomName + "\n" + description);
     }
 }
