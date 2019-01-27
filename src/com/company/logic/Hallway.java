@@ -5,16 +5,29 @@ import java.util.ArrayList;
 
 public class Hallway extends Room {
 
-
+    private boolean intro = true;
     Hallway(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player) {
         super(output, response, itemList, player);
         roomName = "Hallway";
-        description = "You are in the hallway, there are 4 rooms you can enter. \n" +
-                "There is a master a bedroom, an office, a games room and a small bedroom";
+        description = "After running for what seemed like hours you reach the house. It feels foreign but familiar at the time...\n" +
+                "You've been drawn here for a reason and you're determined to find out why\n" +
+                "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n" +
+                "An office\n" +
+                "Small bedroom\n" +
+                "Master bedroom\n" +
+                "And a games rooms\n\n" +
+                "Where do you wish to go?";
     }
 
     @Override
     public void run(String[] command) {
+        if(intro){
+            intro = false;
+        }
+        else{
+            description = "You are in the hallway, there are 4 rooms you can enter. \n" +
+                    "There is a master a bedroom, an office, a games room and a small bedroom";
+        }
         switch(command[0]){
             case "take":
                 response.setText("There is nothing to pick up in this room");
