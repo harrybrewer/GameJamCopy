@@ -112,10 +112,6 @@ class Game {
                 inputRef.setText(" ");
                 sendCommand(currentRoom, parsedCommand);
                 break;
-            case "help":
-                responseRef.setText("Help page");
-                inputRef.setText("");
-                break;
             case "inventory":
                 inputRef.setText("");
                 ArrayList<Item> userItems = player.getTakenItems();
@@ -128,6 +124,17 @@ class Game {
                 }else{
                     responseRef.setText("You have no items in your inventory");
                 }
+                break;
+            case "help":
+                outputRef.setText("Help - typing the following commands will help you interact with the game\n\n" +
+                        "search: explore the current room and list items to interact with\n" +
+                        "go <room name>: enter one of the rooms - games room, master bedroom, \n        small bedroom, office\n" +
+                        "take <item name>: pick up an item and add it to your inventory\n" +
+                        "use <item name>: use an item, as long as it is in your inventory\n" +
+                        "inventory: displays the items in your inventory\n" +
+                        "leave: exits the current room and enter the hallway");
+                responseRef.setText("Help page");
+                inputRef.setText("");
              default:
                  responseRef.setText("Invalid command");
                  inputRef.setText(" ");
