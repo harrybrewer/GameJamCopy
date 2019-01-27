@@ -1,6 +1,6 @@
-#Puzzle game
+# Puzzle game
 
-##Scope
+## Scope
 
 The scope of this project was to create a small scale text based puzzle game that is to be completed in no more than 120 seconds within a 48 hour time limit.
 
