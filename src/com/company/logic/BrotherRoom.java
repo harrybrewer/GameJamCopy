@@ -8,7 +8,8 @@ public class BrotherRoom extends Room {
     BrotherRoom(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
         super(output, response, itemList, player);
         roomName = "Games room";
-        description = "This room appears to be a games room. There is an old computer on the desk in the corner.";
+        description = "The room is cluttered with old broken consoles, computer equipment and various wires. The walls are plastered with old video game box art and posters and various post-it notes\n" +
+                ".";
     }
 
     @Override
