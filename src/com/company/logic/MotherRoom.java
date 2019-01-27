@@ -10,6 +10,7 @@ public class MotherRoom extends Room{
         roomName = "Master bedroom";
         description = "This seems to be the master bedroom. The room is generally pretty neat; the bed has \nbeen made, the bedside table is clean, the dressing table" +
                 " has a few pieces of cosmetics \nlying around. A locket sticking out from underneath the bed does seem out of place.";
+        hint = "<use locket> to start the puzzle";
     }
 
     @Override
@@ -52,6 +53,9 @@ public class MotherRoom extends Room{
                 break;
             case "search":
                 output.setText(displaySearch());
+                break;
+            case "hint":
+                output.setText(hint);
                 break;
         }
     }

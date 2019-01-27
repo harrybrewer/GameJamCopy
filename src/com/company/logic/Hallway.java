@@ -17,6 +17,7 @@ public class Hallway extends Room {
                 "Master bedroom\n" +
                 "And a games rooms\n\n" +
                 "Where do you wish to go?";
+        hint = "Search for the family photo for progress tracking";
         response.setText("Click on the panel below and type help to begin playing.");
     }
 
@@ -68,6 +69,9 @@ public class Hallway extends Room {
                     }
                 }
                 output.setText(photoOutput.toString());
+                break;
+            case "hint":
+                output.setText(hint);
                 break;
         }
     }

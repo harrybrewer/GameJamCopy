@@ -11,6 +11,7 @@ public class FatherRoom extends Room {
         description = "Walking into the office you appreciate the neatness and order of the room.\n"+
                 "A single ray of light exposed from the crack in the blinds hits the desk, almost like a\n spotlight in a play.\n\n" +
                 "On the opposite wall you notice a safe embedded into the foundations of the house, \n whatever is in here must be important...";
+        hint = "You need to look at the items in the room to get the code for the safe, <use safe> to access safe";
     }
     @Override
     public void run(String[] command) {
@@ -60,6 +61,9 @@ public class FatherRoom extends Room {
 
             case "search":
                 output.setText(displaySearch());
+                break;
+            case "hint":
+                output.setText(hint);
                 break;
         }
     }

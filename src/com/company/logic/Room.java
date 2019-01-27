@@ -15,6 +15,7 @@ public abstract class Room {
     ArrayList<Item> itemList;
     Player player;
     Boolean takeItem;
+    String hint;
 
     Room(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player) {
         this.output = output;

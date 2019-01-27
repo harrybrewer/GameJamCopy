@@ -128,11 +128,6 @@ class Game {
                 responseRef.setText("Use");
                 inputRef.setText(" ");
                 break;
-            case "time":
-                responseRef.setText("Time");
-                inputRef.setText(" ");
-                //Check current time
-                break;
             case "leave":
                 currentRoom = rooms.get("Hallway");
                 responseRef.setText("Leave");
@@ -159,9 +154,15 @@ class Game {
                         "take <item name>: pick up an item and add it to your inventory\n" +
                         "use <item name>: use an item, as long as it is in your inventory\n" +
                         "inventory: displays the items in your inventory\n" +
-                        "leave: exits the current room and enter the hallway");
+                        "leave: exits the current room and enter the hallway\n" +
+                        "hint: if you need a hint when in a room towards the puzzle"
+                );
                 responseRef.setText("Help page");
                 inputRef.setText("");
+            case "hint":
+                sendCommand(currentRoom, parsedCommand);
+                responseRef.setText("Use");
+                inputRef.setText(" ");
              default:
                  responseRef.setText("Invalid command");
                  inputRef.setText(" ");
