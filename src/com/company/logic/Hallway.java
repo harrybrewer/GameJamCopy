@@ -9,14 +9,15 @@ public class Hallway extends Room {
     Hallway(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player) {
         super(output, response, itemList, player);
         roomName = "Hallway";
-        description = "You wake up in the hallway of a house. It feels foreign but familiar\nat the same time...\n" +
-                "You've been drawn here for a reason and you're determined to find out why.\n" +
-                "You gather your senses and look around the hallway. There are a total of 4 rooms you can see\n" +
+        description = "After running for what seemed like hours you reach the house. It feels foreign but familiar at the time...\n" +
+                "You've been drawn here for a reason and you're determined to find out why\n" +
+                "You enter the house and enter the hallway. There are a total of 4 rooms you can see\n" +
                 "An office\n" +
                 "Small bedroom\n" +
                 "Master bedroom\n" +
                 "And a games rooms\n\n" +
                 "Where do you wish to go?";
+        hint = "Search for the family photo for progress tracking";
         response.setText("Click on the panel below and type help to begin playing.");
     }
 
@@ -68,6 +69,9 @@ public class Hallway extends Room {
                     }
                 }
                 output.setText(photoOutput.toString());
+                break;
+            case "hint":
+                output.setText(hint);
                 break;
         }
     }
