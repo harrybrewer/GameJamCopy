@@ -59,7 +59,4 @@ public class MotherRoom extends Room{
         output.setText(roomName + "\n" + description);
     }
 
-    private void puzzleControl(){
-
-    }
 }

@@ -60,20 +60,21 @@ class Game {
                 }else {
                     followUp = parsedCommand[1];
                     if(currentRoom.roomName.equals("Hallway")) {
-                        if (followUp.equals("brother") || followUp.equals("brothers") || followUp.equals("brother's")) {
-                            responseRef.setText("Going to Brothers");
+                        //noinspection IfCanBeSwitch
+                        if (followUp.equals("game") || followUp.equals("games")) {
+                            responseRef.setText("Going to the games room");
                             currentRoom = rooms.get("Brother");
                             sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("mother") || followUp.equals("mothers") || followUp.equals("mother's")) {
+                        } else if (followUp.equals("master")) {
                             currentRoom = rooms.get("Mother");
                             sendCommand(currentRoom, parsedCommand);
-                            responseRef.setText("Going to mothers");
-                        } else if (followUp.equals("father") || followUp.equals("fathers") || followUp.equals("father's")) {
-                            responseRef.setText("Going to Fathers");
+                            responseRef.setText("Going to the master bedroom");
+                        } else if (followUp.equals("office")) {
+                            responseRef.setText("Going to the office");
                             currentRoom = rooms.get("Father");
                             sendCommand(currentRoom, parsedCommand);
-                        } else if (followUp.equals("sister") || followUp.equals("sisters") || followUp.equals("sister's")) {
-                            responseRef.setText("Going to Sisters");
+                        } else if (followUp.equals("small") || followUp.equals("bedroom")) {
+                            responseRef.setText("Going to the small bedroom");
                             currentRoom = rooms.get("Sister");
                             sendCommand(currentRoom, parsedCommand);
                         } else {
@@ -87,8 +88,8 @@ class Game {
                 break;
             case "take":
                 inputRef.setText(" ");
+                responseRef.setText("Take");
                 sendCommand(currentRoom, parsedCommand);
-
                 break;
             case "search":
                 sendCommand(currentRoom, parsedCommand);
@@ -128,7 +129,7 @@ class Game {
                     responseRef.setText("You have no items in your inventory");
                 }
              default:
-                 inputRef.setText("Invalid command");
+                 responseRef.setText("Invalid command");
                  inputRef.setText(" ");
                  break;
         }
@@ -140,7 +141,7 @@ class Game {
 
     private void setUpItems(){
         // Mother
-        motherItems.add(new Item("Vase", false, "Poop", "you use the vase"));
+        motherItems.add(new Item("Vase", false, "This is a vase", "you use the vase"));
         // Father
         fatherItems.add(new Item("Journal", false, "A old journal, with a bookmark holding a page open", "This journal has seen some use over the years. The spine has been warn away from\n constant use and the title is barely readable. Opening the page saved by the bookmark you\n read the following" +"\n" +
                         "... \"The safe has finally arrived. I should probably think of a decent key code to secure it. Maybe I can find inspiration in this room? \""));

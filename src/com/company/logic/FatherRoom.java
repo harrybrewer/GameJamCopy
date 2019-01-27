@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class FatherRoom extends Room {
 
-    public FatherRoom (JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
+    FatherRoom(JTextArea output, JTextArea response, ArrayList<Item> itemList, Player player){
         super(output,response,itemList,player);
         roomName = "Office";
         description = "Walking into the office you appreciate the neatness and order of the room.\n"+

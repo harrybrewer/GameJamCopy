@@ -68,7 +68,7 @@ public class Gui extends JFrame {
         // Puzzle and game init
         game = new Game(output, this.userInput, response);
         comp = new computerGame(output, response, userInput);
-        safe = new SafePuzzle(output, response,userInput);
+        safe = new SafePuzzle(output, response);
     }
 
     public static void main(String[] args) {
