@@ -13,3 +13,5 @@ You must attempt to slove the puzzles of the house to solve the mystery.
 
 The game is developed fully using Java and built in java libraries. We made use of JDK version 8.1 to create our game along with the Swing/AWT GUI tool kit for our user interface.
 
+###
+This is a copy of the project that I and 2 others worked on for the 2019 Game Jam
